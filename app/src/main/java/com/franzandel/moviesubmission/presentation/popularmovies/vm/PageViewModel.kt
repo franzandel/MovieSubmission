@@ -1,10 +1,9 @@
-package com.franzandel.moviesubmission.ui.main
+package com.franzandel.moviesubmission.presentation.popularmovies.vm
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 
 class PageViewModel : ViewModel() {
 
