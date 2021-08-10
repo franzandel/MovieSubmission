@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
 }
+apply from: "$rootDir/app/authentication.gradle"
 
 android {
     compileSdkVersion 30
@@ -21,6 +22,12 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        all {
+            buildConfigField 'String', "MOVIE_DB_BASE_URL" , '"https://api.themoviedb.org/3/"'
+            buildConfigField 'String', "MOVIE_DB_IMAGE_BASE_URL" , '"https://image.tmdb.org/t/p/w185"'
+            buildConfigField 'String', "MOVIE_DB_API_KEY" , "\"$movieDBAPIKey\""
         }
     }
     compileOptions {
