@@ -1,4 +1,4 @@
-package com.franzandel.moviesubmission.core
+package com.franzandel.moviesubmission.core.presentation
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil

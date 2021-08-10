@@ -1,6 +1,6 @@
 package com.franzandel.moviesubmission.data.remote.network
 
-import com.franzandel.moviesubmission.data.remote.model.MoviesResponseDTO
+import com.franzandel.moviesubmission.data.remote.model.MoviesResDTO
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -12,5 +12,5 @@ import retrofit2.http.Query
 
 interface MoviesNetworkService {
     @GET("discover/movie")
-    suspend fun getMovies(@Query("api_key") apiKey: String): Response<MoviesResponseDTO>
+    suspend fun getMovies(@Query("api_key") apiKey: String): Response<MoviesResDTO>
 }
