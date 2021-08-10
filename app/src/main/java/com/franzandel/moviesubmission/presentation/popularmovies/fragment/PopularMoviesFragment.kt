@@ -10,23 +10,20 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.franzandel.moviesubmission.data.consts.RecyclerViewConst
 import com.franzandel.moviesubmission.databinding.FragmentPopularMoviesBinding
 import com.franzandel.moviesubmission.presentation.popularmovies.adapter.PopularMoviesAdapter
-import com.franzandel.moviesubmission.presentation.popularmovies.vm.PageViewModel
+import com.franzandel.moviesubmission.presentation.popularmovies.vm.PopularMoviesVM
 
 /**
  * A placeholder fragment containing a simple view.
  */
 class PopularMoviesFragment : Fragment() {
 
-    private lateinit var pageViewModel: PageViewModel
+    private lateinit var pageViewModel: PopularMoviesVM
     private var _binding: FragmentPopularMoviesBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        pageViewModel = ViewModelProvider(this).get(PageViewModel::class.java)
+        pageViewModel = ViewModelProvider(this).get(PopularMoviesVM::class.java)
     }
 
     override fun onCreateView(
