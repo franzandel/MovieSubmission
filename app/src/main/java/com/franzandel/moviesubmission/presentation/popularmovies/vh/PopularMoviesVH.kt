@@ -15,7 +15,7 @@ class PopularMoviesVH(private val itemPopularMoviesBinding: ItemPopularMoviesBin
         with(itemPopularMoviesBinding) {
             tvTitle.text = "Title"
             tvGenre.text = "Genre here"
-            ivLike.isSelected = true
+            ivFavourite.isSelected = true
         }
     }
 }
