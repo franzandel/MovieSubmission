@@ -8,8 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.franzandel.moviesubmission.R
-import com.franzandel.moviesubmission.databinding.FragmentMainBinding
+import com.franzandel.moviesubmission.databinding.FragmentPopularMovieBinding
 
 /**
  * A placeholder fragment containing a simple view.
@@ -17,7 +16,7 @@ import com.franzandel.moviesubmission.databinding.FragmentMainBinding
 class PlaceholderFragment : Fragment() {
 
     private lateinit var pageViewModel: PageViewModel
-    private var _binding: FragmentMainBinding? = null
+    private var _binding: FragmentPopularMovieBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -33,9 +32,9 @@ class PlaceholderFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
-        _binding = FragmentMainBinding.inflate(inflater, container, false)
+        _binding = FragmentPopularMovieBinding.inflate(inflater, container, false)
         val root = binding.root
 
         val textView: TextView = binding.sectionLabel
