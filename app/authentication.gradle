@@ -1,0 +1,7 @@
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file("local.properties").newDataInputStream())
+
+ext {
+    movieDBAPIKey = properties.getProperty("movie_db_api_key", "")
+}
