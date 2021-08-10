@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import com.franzandel.moviesubmission.databinding.ActivityDashboardBinding
-import com.franzandel.moviesubmission.ui.main.SectionsPagerAdapter
 import com.google.android.material.tabs.TabLayout
 
 class DashboardActivity : AppCompatActivity() {
