@@ -2,6 +2,8 @@ package com.franzandel.moviesubmission.di
 
 import com.franzandel.moviesubmission.core.mapper.BaseMapper
 import com.franzandel.moviesubmission.core.mapper.RetrofitResMapper
+import com.franzandel.moviesubmission.data.local.dao.MoviesDao
+import com.franzandel.moviesubmission.data.local.database.MoviesDatabase
 import com.franzandel.moviesubmission.data.remote.mapper.RetrofitGenresResMapper
 import com.franzandel.moviesubmission.data.remote.mapper.RetrofitMoviesResMapper
 import com.franzandel.moviesubmission.data.remote.model.GenresResDTO
@@ -64,4 +66,8 @@ object MoviesModule {
         genresResUIMapper: BaseMapper<List<GenreRes>, String>
     ): BaseMapper<List<MovieGenreRes>, List<TopRatedMovieResUI>> =
         TopRatedMovieResUIMapper(genresResUIMapper)
+
+    @Provides
+    @ViewModelScoped
+    fun provideMoviesDao(database: MoviesDatabase): MoviesDao = database.moviesDao()
 }

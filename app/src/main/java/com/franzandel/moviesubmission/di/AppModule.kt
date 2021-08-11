@@ -1,7 +1,10 @@
 package com.franzandel.moviesubmission.di
 
+import android.content.Context
 import android.net.Uri
+import androidx.room.Room
 import com.franzandel.moviesubmission.BuildConfig
+import com.franzandel.moviesubmission.data.local.database.MoviesDatabase
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
@@ -22,6 +25,8 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
+
+    private const val MOVIES_DB_NAME = "Movies.db"
     private const val TIMEOUT_TIME = 60L
     private val domainUrl = Uri.parse(BuildConfig.MOVIE_DB_BASE_URL).host.toString()
 
@@ -54,4 +59,14 @@ object AppModule {
     @Provides
     @Singleton
     fun provideGson(): Gson = Gson()
+
+    @Provides
+    @Singleton
+    fun provideMoviesDatabase(context: Context): MoviesDatabase =
+        Room.databaseBuilder(
+            context,
+            MoviesDatabase::class.java,
+            MOVIES_DB_NAME
+        ).fallbackToDestructiveMigration()
+            .build()
 }
