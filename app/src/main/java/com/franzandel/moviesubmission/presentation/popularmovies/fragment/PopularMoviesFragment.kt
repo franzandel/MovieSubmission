@@ -5,10 +5,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import com.franzandel.moviesubmission.core.external.extension.observe
 import com.franzandel.moviesubmission.data.consts.RecyclerViewConst
 import com.franzandel.moviesubmission.databinding.FragmentPopularMoviesBinding
 import com.franzandel.moviesubmission.presentation.dashboard.vm.DashboardVM
@@ -36,9 +38,7 @@ class PopularMoviesFragment : Fragment() {
         val root = binding.root
 
         setupRV()
-        viewModel.movies.observe(viewLifecycleOwner, {
-            Log.d("1234", it!![0].title)
-        })
+        setupObserver()
         return root
     }
 
@@ -55,5 +55,15 @@ class PopularMoviesFragment : Fragment() {
         )
         binding.rvPopularMovies.adapter = adapter
         adapter.submitList(listOf("", ""))
+    }
+
+    private fun setupObserver() {
+        viewLifecycleOwner.observe(viewModel.popularMovies) {
+            Log.d("1234", it[0].title)
+        }
+
+        viewLifecycleOwner.observe(viewModel.error) {
+            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+        }
     }
 }
