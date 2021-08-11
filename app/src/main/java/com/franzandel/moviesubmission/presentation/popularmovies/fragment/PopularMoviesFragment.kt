@@ -1,7 +1,6 @@
 package com.franzandel.moviesubmission.presentation.popularmovies.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,6 +23,10 @@ class PopularMoviesFragment : Fragment() {
     private lateinit var pageViewModel: PopularMoviesVM
     private var _binding: FragmentPopularMoviesBinding? = null
     private val binding get() = _binding!!
+
+    private val adapter by lazy {
+        PopularMoviesAdapter()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,18 +51,16 @@ class PopularMoviesFragment : Fragment() {
     }
 
     private fun setupRV() {
-        val adapter = PopularMoviesAdapter()
         binding.rvPopularMovies.layoutManager = GridLayoutManager(
             requireContext(),
             RecyclerViewConst.GRID_SPAN_COUNT
         )
         binding.rvPopularMovies.adapter = adapter
-        adapter.submitList(listOf("", ""))
     }
 
     private fun setupObserver() {
         viewLifecycleOwner.observe(viewModel.popularMovies) {
-            Log.d("1234", it[0].title)
+            adapter.submitList(it)
         }
 
         viewLifecycleOwner.observe(viewModel.error) {

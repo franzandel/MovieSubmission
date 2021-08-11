@@ -21,25 +21,27 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_title"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            tools:text="Tomorrowland"
-            android:textStyle="bold"
-            android:layout_marginStart="@dimen/margin_16"
+            android:layout_marginHorizontal="@dimen/margin_16"
             android:layout_marginTop="@dimen/margin_16"
             android:textSize="@dimen/text_size_16"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/iv_favourite"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_popular_movies" />
+            app:layout_constraintTop_toBottomOf="@+id/iv_popular_movies"
+            tools:text="Tomorrowland" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_genre"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             tools:text="Action, Adventure, Fantasy, Mystery"
             android:paddingBottom="@dimen/margin_8"
-            android:layout_marginStart="@dimen/margin_16"
+            android:layout_marginHorizontal="@dimen/margin_16"
             android:layout_marginTop="@dimen/margin_16"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
         <androidx.appcompat.widget.AppCompatImageView
