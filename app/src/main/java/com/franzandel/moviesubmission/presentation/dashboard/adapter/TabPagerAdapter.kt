@@ -1,9 +1,10 @@
-package com.franzandel.moviesubmission
+package com.franzandel.moviesubmission.presentation.dashboard.adapter
 
 import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import com.franzandel.moviesubmission.R
 import com.franzandel.moviesubmission.presentation.favourite.fragment.FavouriteMoviesFragment
 import com.franzandel.moviesubmission.presentation.popularmovies.fragment.PopularMoviesFragment
 import com.franzandel.moviesubmission.presentation.topratedmovies.fragment.TopRatedMoviesFragment
@@ -12,7 +13,7 @@ import com.franzandel.moviesubmission.presentation.topratedmovies.fragment.TopRa
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
  * one of the sections/tabs/pages.
  */
-class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
+class TabPagerAdapter(private val context: Context, fm: FragmentManager) :
     FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     private val tabTitles = arrayOf(
