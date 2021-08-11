@@ -13,18 +13,26 @@ import com.franzandel.moviesubmission.presentation.popularmovies.vh.PopularMovie
  * Android Engineer
  */
 
-class PopularMoviesAdapter :
+class PopularMoviesAdapter(private val favouriteClicked: () -> Unit) :
     BaseAdapter<PopularMovieResUI, PopularMoviesVH, ItemPopularMoviesBinding>(
         PopularMoviesDiffCallback()
     ) {
 
+    private lateinit var viewHolder: PopularMoviesVH
+
     override fun getViewBinding(parent: ViewGroup): ItemPopularMoviesBinding =
         ItemPopularMoviesBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
-    override fun getViewHolder(viewBinding: ItemPopularMoviesBinding): PopularMoviesVH =
-        PopularMoviesVH(viewBinding)
+    override fun getViewHolder(viewBinding: ItemPopularMoviesBinding): PopularMoviesVH {
+        viewHolder = PopularMoviesVH(viewBinding)
+        return viewHolder
+    }
 
     override fun onBindViewHolder(holder: PopularMoviesVH, position: Int) {
-        holder.bind(currentList[position])
+        holder.bind(currentList[position], favouriteClicked)
+    }
+
+    fun setIsFavourite(isFavourite: Boolean) {
+        viewHolder.setIsFavourite(isFavourite)
     }
 }

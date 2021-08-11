@@ -15,7 +15,7 @@ import com.franzandel.moviesubmission.presentation.popularmovies.model.PopularMo
 class PopularMoviesVH(private val itemPopularMoviesBinding: ItemPopularMoviesBinding) :
     RecyclerView.ViewHolder(itemPopularMoviesBinding.root) {
 
-    fun bind(popularMovieResUI: PopularMovieResUI) {
+    fun bind(popularMovieResUI: PopularMovieResUI, favouriteClicked: () -> Unit) {
         with(itemPopularMoviesBinding) {
             tvTitle.text = popularMovieResUI.title
             tvGenre.text = popularMovieResUI.genres
@@ -27,6 +27,14 @@ class PopularMoviesVH(private val itemPopularMoviesBinding: ItemPopularMoviesBin
                 .centerCrop()
                 .placeholder(R.drawable.ic_image_not_found)
                 .into(ivPopularMovies)
+
+            ivFavourite.setOnClickListener {
+                favouriteClicked.invoke()
+            }
         }
+    }
+
+    fun setIsFavourite(isFavourite: Boolean) {
+        itemPopularMoviesBinding.ivFavourite.isSelected = isFavourite
     }
 }
