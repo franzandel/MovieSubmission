@@ -1,9 +1,10 @@
-package com.franzandel.moviesubmission
+package com.franzandel.moviesubmission.presentation.dashboard.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import com.franzandel.moviesubmission.databinding.ActivityDashboardBinding
+import com.franzandel.moviesubmission.presentation.dashboard.adapter.TabPagerAdapter
 import com.google.android.material.tabs.TabLayout
 
 class DashboardActivity : AppCompatActivity() {
@@ -16,7 +17,7 @@ class DashboardActivity : AppCompatActivity() {
         binding = ActivityDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
+        val sectionsPagerAdapter = TabPagerAdapter(this, supportFragmentManager)
         val viewPager: ViewPager = binding.viewPager
         viewPager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = binding.tabs
