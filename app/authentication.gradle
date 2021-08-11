@@ -4,4 +4,8 @@ properties.load(project.rootProject.file("local.properties").newDataInputStream(
 
 ext {
     movieDBAPIKey = properties.getProperty("movie_db_api_key", "")
+    certPinner1 = properties.getProperty("cert_pinner_1", "")
+    certPinner2 = properties.getProperty("cert_pinner_2", "")
+    certPinner3 = properties.getProperty("cert_pinner_3", "")
+    certPinner4 = properties.getProperty("cert_pinner_4", "")
 }
