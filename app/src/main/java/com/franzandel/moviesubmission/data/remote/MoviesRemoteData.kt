@@ -1,7 +1,8 @@
 package com.franzandel.moviesubmission.data.remote
 
 import com.franzandel.moviesubmission.core.data.wrapper.Result
-import com.franzandel.moviesubmission.domain.model.MovieGenreRes
+import com.franzandel.moviesubmission.domain.model.GenreRes
+import com.franzandel.moviesubmission.domain.model.MovieRes
 
 /**
  * Created by Franz Andel on 10/08/21.
@@ -9,5 +10,6 @@ import com.franzandel.moviesubmission.domain.model.MovieGenreRes
  */
 
 interface MoviesRemoteData {
-    suspend fun getMovies(): Result<List<MovieGenreRes>>
+    suspend fun getMovies(): Result<List<MovieRes>>
+    suspend fun getGenres(): Result<List<GenreRes>>
 }
