@@ -1,12 +1,10 @@
 package com.franzandel.moviesubmission.di
 
 import androidx.lifecycle.ViewModel
-import com.franzandel.moviesubmission.core.external.coroutine.CoroutineThread
 import com.franzandel.moviesubmission.core.presentation.vm.ViewModelKey
-import com.franzandel.moviesubmission.domain.usecase.MoviesUseCase
 import com.franzandel.moviesubmission.presentation.dashboard.vm.DashboardVM
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 import dagger.multibindings.IntoMap
@@ -18,11 +16,10 @@ import dagger.multibindings.IntoMap
 
 @Module
 @InstallIn(ViewModelComponent::class)
-object DashboardModule {
+abstract class DashboardModule {
 
-    @Provides
+    @Binds
     @IntoMap
     @ViewModelKey(DashboardVM::class)
-    fun provideDashboardVM(useCase: MoviesUseCase, coroutineThread: CoroutineThread): ViewModel =
-        DashboardVM(useCase, coroutineThread)
+    abstract fun provideDashboardVM(dashboardVM: DashboardVM): ViewModel
 }
