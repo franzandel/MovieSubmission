@@ -1,13 +1,19 @@
 package com.franzandel.moviesubmission.presentation.dashboard.activity
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import com.franzandel.moviesubmission.databinding.ActivityDashboardBinding
 import com.franzandel.moviesubmission.presentation.dashboard.adapter.TabPagerAdapter
+import com.franzandel.moviesubmission.presentation.dashboard.vm.DashboardVM
 import com.google.android.material.tabs.TabLayout
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DashboardActivity : AppCompatActivity() {
+
+    private val viewModel: DashboardVM by viewModels()
 
     private lateinit var binding: ActivityDashboardBinding
 
@@ -22,5 +28,7 @@ class DashboardActivity : AppCompatActivity() {
         viewPager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = binding.tabs
         tabs.setupWithViewPager(viewPager)
+
+        viewModel.getMovies()
     }
 }

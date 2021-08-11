@@ -1,21 +1,23 @@
 package com.franzandel.moviesubmission.presentation.popularmovies.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.franzandel.moviesubmission.data.consts.RecyclerViewConst
 import com.franzandel.moviesubmission.databinding.FragmentPopularMoviesBinding
+import com.franzandel.moviesubmission.presentation.dashboard.vm.DashboardVM
 import com.franzandel.moviesubmission.presentation.popularmovies.adapter.PopularMoviesAdapter
 import com.franzandel.moviesubmission.presentation.popularmovies.vm.PopularMoviesVM
 
-/**
- * A placeholder fragment containing a simple view.
- */
 class PopularMoviesFragment : Fragment() {
+
+    private val viewModel: DashboardVM by activityViewModels()
 
     private lateinit var pageViewModel: PopularMoviesVM
     private var _binding: FragmentPopularMoviesBinding? = null
@@ -34,6 +36,9 @@ class PopularMoviesFragment : Fragment() {
         val root = binding.root
 
         setupRV()
+        viewModel.movies.observe(viewLifecycleOwner, {
+            Log.d("1234", it!![0].title)
+        })
         return root
     }
 
