@@ -2,7 +2,7 @@ package com.franzandel.moviesubmission.presentation.favourite.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.franzandel.moviesubmission.core.presentation.BaseAdapter
+import com.franzandel.moviesubmission.core.presentation.adapter.BaseAdapter
 import com.franzandel.moviesubmission.databinding.ItemFavouriteMoviesBinding
 import com.franzandel.moviesubmission.presentation.favourite.diffcallback.FavouriteMoviesDiffCallback
 import com.franzandel.moviesubmission.presentation.favourite.vh.FavouriteMoviesVH

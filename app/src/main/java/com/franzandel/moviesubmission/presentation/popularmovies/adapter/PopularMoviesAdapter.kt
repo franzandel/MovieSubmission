@@ -2,7 +2,7 @@ package com.franzandel.moviesubmission.presentation.popularmovies.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.franzandel.moviesubmission.core.presentation.BaseAdapter
+import com.franzandel.moviesubmission.core.presentation.adapter.BaseAdapter
 import com.franzandel.moviesubmission.databinding.ItemPopularMoviesBinding
 import com.franzandel.moviesubmission.presentation.popularmovies.diffcallback.PopularMoviesDiffCallback
 import com.franzandel.moviesubmission.presentation.popularmovies.vh.PopularMoviesVH

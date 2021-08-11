@@ -7,8 +7,9 @@ import com.franzandel.moviesubmission.core.mapper.RetrofitResMapper
 import com.franzandel.moviesubmission.data.remote.model.MoviesResDTO
 import com.franzandel.moviesubmission.data.remote.network.MoviesNetworkService
 import com.franzandel.moviesubmission.domain.model.MovieRes
+import javax.inject.Inject
 
-class MoviesRemoteDataImpl(
+class MoviesRemoteDataImpl @Inject constructor(
     private val service: MoviesNetworkService,
     private val mapper: RetrofitResMapper<MoviesResDTO, List<MovieRes>>
 ) : MoviesRemoteData {
