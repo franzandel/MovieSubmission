@@ -31,6 +31,10 @@ android {
             buildConfigField 'String', "MOVIE_DB_BASE_URL" , '"https://api.themoviedb.org/3/"'
             buildConfigField 'String', "MOVIE_DB_IMAGE_BASE_URL" , '"https://image.tmdb.org/t/p/w185"'
             buildConfigField 'String', "MOVIE_DB_API_KEY" , "\"$movieDBAPIKey\""
+            buildConfigField 'String', "CERT_PINNER_1" , "\"$certPinner1\""
+            buildConfigField 'String', "CERT_PINNER_2" , "\"$certPinner2\""
+            buildConfigField 'String', "CERT_PINNER_3" , "\"$certPinner3\""
+            buildConfigField 'String', "CERT_PINNER_4" , "\"$certPinner4\""
         }
     }
     compileOptions {
@@ -66,4 +70,8 @@ dependencies {
 
     implementation "com.google.dagger:hilt-android:2.37"
     kapt "com.google.dagger:hilt-compiler:2.37"
+
+    // by viewModels()
+    implementation "androidx.activity:activity-ktx:1.3.1"
+    implementation "androidx.fragment:fragment-ktx:1.3.6"
 }

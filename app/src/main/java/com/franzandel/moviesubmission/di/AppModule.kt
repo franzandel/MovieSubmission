@@ -1,8 +1,7 @@
 package com.franzandel.moviesubmission.di
 
-import androidx.lifecycle.ViewModel
+import android.net.Uri
 import com.franzandel.moviesubmission.BuildConfig
-import com.franzandel.moviesubmission.core.presentation.vm.ViewModelFactory
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
@@ -13,7 +12,6 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
-import javax.inject.Provider
 import javax.inject.Singleton
 
 /**
@@ -25,11 +23,13 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object AppModule {
     private const val TIMEOUT_TIME = 60L
+    private val domainUrl = Uri.parse(BuildConfig.MOVIE_DB_BASE_URL).host.toString()
 
     private val certificatePinner = CertificatePinner.Builder()
-        .add(BuildConfig.MOVIE_DB_BASE_URL, "BuildConfig.CERT_PINNER_1")
-        .add(BuildConfig.MOVIE_DB_BASE_URL, "BuildConfig.CERT_PINNER_2")
-        .add(BuildConfig.MOVIE_DB_BASE_URL, "BuildConfig.CERT_PINNER_3")
+        .add(domainUrl, BuildConfig.CERT_PINNER_1)
+        .add(domainUrl, BuildConfig.CERT_PINNER_2)
+        .add(domainUrl, BuildConfig.CERT_PINNER_3)
+        .add(domainUrl, BuildConfig.CERT_PINNER_4)
         .build()
 
     @Provides
@@ -54,10 +54,4 @@ object AppModule {
     @Provides
     @Singleton
     fun provideGson(): Gson = Gson()
-
-    @Provides
-    fun provideViewModelFactory(
-        providerMap: MutableMap<Class<out ViewModel>, Provider<ViewModel>>
-    ): ViewModelFactory =
-        ViewModelFactory(providerMap)
 }
