@@ -25,7 +25,9 @@ class PopularMoviesFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val adapter by lazy {
-        PopularMoviesAdapter()
+        PopularMoviesAdapter {
+            Toast.makeText(requireContext(), "Favourite Clicked", Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

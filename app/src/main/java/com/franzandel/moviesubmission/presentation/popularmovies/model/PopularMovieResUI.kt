@@ -1,7 +1,7 @@
 package com.franzandel.moviesubmission.presentation.popularmovies.model
 
 /**
- * Created by Franz Andel on 06/03/21.
+ * Created by Franz Andel on 11/08/21.
  * Android Engineer
  */
 
