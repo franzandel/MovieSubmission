@@ -2,10 +2,15 @@ package com.franzandel.moviesubmission.di
 
 import com.franzandel.moviesubmission.core.mapper.BaseMapper
 import com.franzandel.moviesubmission.core.mapper.RetrofitResMapper
-import com.franzandel.moviesubmission.data.remote.mapper.MovieMapper
+import com.franzandel.moviesubmission.data.remote.mapper.RetrofitGenresResMapper
+import com.franzandel.moviesubmission.data.remote.mapper.RetrofitMoviesResMapper
+import com.franzandel.moviesubmission.data.remote.model.GenresResDTO
 import com.franzandel.moviesubmission.data.remote.model.MoviesResDTO
 import com.franzandel.moviesubmission.data.remote.network.MoviesNetworkService
+import com.franzandel.moviesubmission.domain.model.GenreRes
+import com.franzandel.moviesubmission.domain.model.MovieGenreRes
 import com.franzandel.moviesubmission.domain.model.MovieRes
+import com.franzandel.moviesubmission.presentation.mapper.GenresResUIMapper
 import com.franzandel.moviesubmission.presentation.popularmovies.mapper.PopularMovieResUIMapper
 import com.franzandel.moviesubmission.presentation.popularmovies.model.PopularMovieResUI
 import com.franzandel.moviesubmission.presentation.topratedmovies.mapper.TopRatedMovieResUIMapper
@@ -34,16 +39,29 @@ object MoviesModule {
 
     @Provides
     @ViewModelScoped
-    fun provideGamesResultsUIMapper(gson: Gson): RetrofitResMapper<MoviesResDTO, List<MovieRes>> =
-        MovieMapper(gson)
+    fun provideRetrofitMoviesResMapper(gson: Gson): RetrofitResMapper<MoviesResDTO, List<MovieRes>> =
+        RetrofitMoviesResMapper(gson)
 
     @Provides
     @ViewModelScoped
-    fun providePopularMovieResUIMapper(): BaseMapper<List<MovieRes>, List<PopularMovieResUI>> =
-        PopularMovieResUIMapper()
+    fun provideRetrofitGenresResMapper(gson: Gson): RetrofitResMapper<GenresResDTO, List<GenreRes>> =
+        RetrofitGenresResMapper(gson)
 
     @Provides
     @ViewModelScoped
-    fun provideTopRatedMovieResUIMapper(): BaseMapper<List<MovieRes>, List<TopRatedMovieResUI>> =
-        TopRatedMovieResUIMapper()
+    fun provideGenresResUIMapper(): BaseMapper<List<GenreRes>, String> = GenresResUIMapper()
+
+    @Provides
+    @ViewModelScoped
+    fun providePopularMovieResUIMapper(
+        genresResUIMapper: BaseMapper<List<GenreRes>, String>
+    ): BaseMapper<List<MovieGenreRes>, List<PopularMovieResUI>> =
+        PopularMovieResUIMapper(genresResUIMapper)
+
+    @Provides
+    @ViewModelScoped
+    fun provideTopRatedMovieResUIMapper(
+        genresResUIMapper: BaseMapper<List<GenreRes>, String>
+    ): BaseMapper<List<MovieGenreRes>, List<TopRatedMovieResUI>> =
+        TopRatedMovieResUIMapper(genresResUIMapper)
 }

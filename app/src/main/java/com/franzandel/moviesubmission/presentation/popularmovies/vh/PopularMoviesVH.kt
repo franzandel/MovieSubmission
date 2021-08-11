@@ -18,7 +18,7 @@ class PopularMoviesVH(private val itemPopularMoviesBinding: ItemPopularMoviesBin
     fun bind(popularMovieResUI: PopularMovieResUI) {
         with(itemPopularMoviesBinding) {
             tvTitle.text = popularMovieResUI.title
-            tvGenre.text = popularMovieResUI.originalTitle
+            tvGenre.text = popularMovieResUI.genres
             ivFavourite.isSelected = true
 
             val imageUrl = BuildConfig.MOVIE_DB_IMAGE_BASE_URL + popularMovieResUI.posterPath

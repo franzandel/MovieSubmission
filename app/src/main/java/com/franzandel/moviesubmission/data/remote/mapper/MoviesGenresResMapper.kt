@@ -1,23 +1,25 @@
 package com.franzandel.moviesubmission.data.remote.mapper
 
-import com.franzandel.moviesubmission.core.mapper.RetrofitResMapper
-import com.franzandel.moviesubmission.data.remote.model.MoviesResDTO
+import com.franzandel.moviesubmission.core.mapper.BaseMapper
+import com.franzandel.moviesubmission.domain.model.GenreRes
+import com.franzandel.moviesubmission.domain.model.MovieGenreRes
 import com.franzandel.moviesubmission.domain.model.MovieRes
-import com.google.gson.Gson
 
 /**
- * Created by Franz Andel on 10/08/21.
+ * Created by Franz Andel on 11/08/21.
  * Android Engineer
  */
 
-class MovieMapper(gson: Gson) : RetrofitResMapper<MoviesResDTO, List<MovieRes>>(gson) {
+class MoviesGenresResMapper(
+    private val genresResMapper: BaseMapper<List<Int>, List<GenreRes>>
+) : BaseMapper<List<MovieRes>, List<MovieGenreRes>>() {
 
-    override fun map(dataModel: MoviesResDTO): List<MovieRes> =
-        dataModel.movies.map {
-            MovieRes(
+    override fun map(dataModel: List<MovieRes>): List<MovieGenreRes> =
+        dataModel.map {
+            MovieGenreRes(
                 adult = it.adult,
                 backdropPath = it.backdropPath,
-                genreIds = it.genreIds,
+                genresRes = genresResMapper.map(it.genreIds),
                 id = it.id,
                 originalLanguage = it.originalLanguage,
                 originalTitle = it.originalTitle,

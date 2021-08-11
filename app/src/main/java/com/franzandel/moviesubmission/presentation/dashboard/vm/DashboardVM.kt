@@ -7,7 +7,7 @@ import com.franzandel.moviesubmission.core.data.wrapper.Result
 import com.franzandel.moviesubmission.core.external.coroutine.CoroutineThread
 import com.franzandel.moviesubmission.core.mapper.BaseMapper
 import com.franzandel.moviesubmission.core.presentation.vm.BaseViewModel
-import com.franzandel.moviesubmission.domain.model.MovieRes
+import com.franzandel.moviesubmission.domain.model.MovieGenreRes
 import com.franzandel.moviesubmission.domain.usecase.MoviesUseCase
 import com.franzandel.moviesubmission.presentation.popularmovies.model.PopularMovieResUI
 import com.franzandel.moviesubmission.presentation.topratedmovies.model.TopRatedMovieResUI
@@ -24,8 +24,8 @@ import javax.inject.Inject
 class DashboardVM @Inject constructor(
     private val moviesUseCase: MoviesUseCase,
     private val coroutineThread: CoroutineThread,
-    private val popularMovieResUIMapper: BaseMapper<List<MovieRes>, List<PopularMovieResUI>>,
-    private val topRatedMovieResUIMapper: BaseMapper<List<MovieRes>, List<TopRatedMovieResUI>>
+    private val popularMovieResUIMapper: BaseMapper<List<MovieGenreRes>, List<PopularMovieResUI>>,
+    private val topRatedMovieResUIMapper: BaseMapper<List<MovieGenreRes>, List<TopRatedMovieResUI>>
 ) : BaseViewModel() {
 
     private val _popularMovies = MutableLiveData<List<PopularMovieResUI>>()

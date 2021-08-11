@@ -1,14 +1,14 @@
-package com.franzandel.moviesubmission.presentation.topratedmovies.model
+package com.franzandel.moviesubmission.domain.model
 
 /**
  * Created by Franz Andel on 06/03/21.
  * Android Engineer
  */
 
-data class TopRatedMovieResUI(
+data class MovieGenreRes(
     val adult: Boolean,
     val backdropPath: String,
-    val genres: String,
+    val genresRes: List<GenreRes>,
     val id: Int,
     val originalLanguage: String,
     val originalTitle: String,

@@ -8,7 +8,7 @@ package com.franzandel.moviesubmission.presentation.popularmovies.model
 data class PopularMovieResUI(
     val adult: Boolean,
     val backdropPath: String,
-    val genreIds: List<Int>,
+    val genres: String,
     val id: Int,
     val originalLanguage: String,
     val originalTitle: String,

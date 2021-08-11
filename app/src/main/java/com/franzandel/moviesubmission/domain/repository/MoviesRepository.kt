@@ -1,7 +1,7 @@
 package com.franzandel.moviesubmission.domain.repository
 
 import com.franzandel.moviesubmission.core.data.wrapper.Result
-import com.franzandel.moviesubmission.domain.model.MovieRes
+import com.franzandel.moviesubmission.domain.model.MovieGenreRes
 
 /**
  * Created by Franz Andel on 11/08/21.
@@ -9,5 +9,5 @@ import com.franzandel.moviesubmission.domain.model.MovieRes
  */
 
 interface MoviesRepository {
-    suspend fun getMovies(): Result<List<MovieRes>>
+    suspend fun getMovies(): Result<List<MovieGenreRes>>
 }

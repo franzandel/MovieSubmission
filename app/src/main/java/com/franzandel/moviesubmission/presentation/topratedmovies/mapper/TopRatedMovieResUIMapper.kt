@@ -1,7 +1,8 @@
 package com.franzandel.moviesubmission.presentation.topratedmovies.mapper
 
 import com.franzandel.moviesubmission.core.mapper.BaseMapper
-import com.franzandel.moviesubmission.domain.model.MovieRes
+import com.franzandel.moviesubmission.domain.model.GenreRes
+import com.franzandel.moviesubmission.domain.model.MovieGenreRes
 import com.franzandel.moviesubmission.presentation.topratedmovies.model.TopRatedMovieResUI
 
 /**
@@ -9,14 +10,15 @@ import com.franzandel.moviesubmission.presentation.topratedmovies.model.TopRated
  * Android Engineer
  */
 
-class TopRatedMovieResUIMapper : BaseMapper<List<MovieRes>, List<TopRatedMovieResUI>>() {
+class TopRatedMovieResUIMapper(private val genresResUIMapper: BaseMapper<List<GenreRes>, String>) :
+    BaseMapper<List<MovieGenreRes>, List<TopRatedMovieResUI>>() {
 
-    override fun map(dataModel: List<MovieRes>): List<TopRatedMovieResUI> =
+    override fun map(dataModel: List<MovieGenreRes>): List<TopRatedMovieResUI> =
         dataModel.map {
             TopRatedMovieResUI(
                 adult = it.adult,
                 backdropPath = it.backdropPath,
-                genreIds = it.genreIds,
+                genres = genresResUIMapper.map(it.genresRes),
                 id = it.id,
                 originalLanguage = it.originalLanguage,
                 originalTitle = it.originalTitle,
