@@ -2,7 +2,7 @@ package com.franzandel.moviesubmission.presentation.topratedmovies.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.franzandel.moviesubmission.core.BaseAdapter
+import com.franzandel.moviesubmission.core.presentation.BaseAdapter
 import com.franzandel.moviesubmission.databinding.ItemTopRatedMoviesBinding
 import com.franzandel.moviesubmission.presentation.topratedmovies.diffcallback.TopRatedMoviesDiffCallback
 import com.franzandel.moviesubmission.presentation.topratedmovies.vh.TopRatedMoviesVH
