@@ -2,8 +2,7 @@ package com.franzandel.moviesubmission.core.data.wrapper
 
 sealed class Result<out T> {
     data class Success<out S>(val data: S) : Result<S>()
-    data class Error(val error: Exception, val code: Int = -1) :
-        Result<Nothing>()
+    data class Error(val error: Exception, val code: Int = -1) : Result<Nothing>()
 }
 
 const val UNKNOWN_ERROR = "unknown error"
