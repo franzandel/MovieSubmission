@@ -1,8 +1,10 @@
 package com.franzandel.moviesubmission.data.remote.model
 
+import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 
-data class MovieDTO(
+@Keep
+data class MovieResDTO(
     val adult: Boolean,
     @SerializedName("backdrop_path")
     val backdropPath: String,
