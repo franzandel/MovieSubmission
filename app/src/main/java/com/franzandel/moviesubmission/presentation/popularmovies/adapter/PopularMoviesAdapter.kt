@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import com.franzandel.moviesubmission.core.presentation.adapter.BaseAdapter
 import com.franzandel.moviesubmission.databinding.ItemPopularMoviesBinding
 import com.franzandel.moviesubmission.presentation.popularmovies.diffcallback.PopularMoviesDiffCallback
+import com.franzandel.moviesubmission.presentation.popularmovies.model.PopularMovieResUI
 import com.franzandel.moviesubmission.presentation.popularmovies.vh.PopularMoviesVH
 
 /**
@@ -13,7 +14,9 @@ import com.franzandel.moviesubmission.presentation.popularmovies.vh.PopularMovie
  */
 
 class PopularMoviesAdapter :
-    BaseAdapter<String, PopularMoviesVH, ItemPopularMoviesBinding>(PopularMoviesDiffCallback()) {
+    BaseAdapter<PopularMovieResUI, PopularMoviesVH, ItemPopularMoviesBinding>(
+        PopularMoviesDiffCallback()
+    ) {
 
     override fun getViewBinding(parent: ViewGroup): ItemPopularMoviesBinding =
         ItemPopularMoviesBinding.inflate(LayoutInflater.from(parent.context), parent, false)
