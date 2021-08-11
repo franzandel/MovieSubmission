@@ -18,7 +18,7 @@ interface MoviesDao {
     suspend fun deleteMovieEntity(movieEntity: MovieEntity): Int
 
     @Query("SELECT * FROM tbl_movie")
-    suspend fun getMovieEntities(name: String): List<MovieEntity>
+    suspend fun getMovieEntities(): List<MovieEntity>
 
     @Query("SELECT * FROM tbl_movie WHERE id = :id")
     suspend fun getMovieEntity(id: Int): MovieEntity?
