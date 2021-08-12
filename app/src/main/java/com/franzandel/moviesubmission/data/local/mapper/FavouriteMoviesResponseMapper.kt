@@ -1,19 +1,20 @@
 package com.franzandel.moviesubmission.data.local.mapper
 
 import com.franzandel.moviesubmission.core.mapper.BaseMapper
-import com.franzandel.moviesubmission.data.local.entity.MovieEntity
-import com.franzandel.moviesubmission.domain.model.MovieResponse
+import com.franzandel.moviesubmission.data.local.entity.FavouriteMovieEntity
+import com.franzandel.moviesubmission.domain.model.FavouriteMovieRes
 
 /**
  * Created by Franz Andel on 12/08/21.
  * Android Engineer
  */
 
-class MoviesResponseMapper : BaseMapper<List<MovieEntity>, List<MovieResponse>>() {
+class FavouriteMoviesResponseMapper :
+    BaseMapper<List<FavouriteMovieEntity>, List<FavouriteMovieRes>>() {
 
-    override fun map(dataModel: List<MovieEntity>): List<MovieResponse> =
+    override fun map(dataModel: List<FavouriteMovieEntity>): List<FavouriteMovieRes> =
         dataModel.map {
-            MovieResponse(
+            FavouriteMovieRes(
                 id = it.id,
                 adult = it.adult,
                 backdropPath = it.backdropPath,

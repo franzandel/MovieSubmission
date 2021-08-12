@@ -1,7 +1,7 @@
 package com.franzandel.moviesubmission.data.local.dao
 
 import androidx.room.*
-import com.franzandel.moviesubmission.data.local.entity.MovieEntity
+import com.franzandel.moviesubmission.data.local.entity.FavouriteMovieEntity
 
 /**
  * Created by Franz Andel on 11/08/21.
@@ -12,14 +12,14 @@ import com.franzandel.moviesubmission.data.local.entity.MovieEntity
 interface FavouriteMoviesDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertFavouriteMovie(movieEntity: MovieEntity): Long
+    suspend fun insertFavouriteMovie(movieEntity: FavouriteMovieEntity): Long
 
     @Delete
-    suspend fun deleteFavouriteMovie(movieEntity: MovieEntity): Int
+    suspend fun deleteFavouriteMovie(movieEntity: FavouriteMovieEntity): Int
 
-    @Query("SELECT * FROM tbl_movie")
-    suspend fun getFavouriteMovies(): List<MovieEntity>
+    @Query("SELECT * FROM tbl_favourite_movie")
+    suspend fun getFavouriteMovies(): List<FavouriteMovieEntity>
 
-    @Query("SELECT * FROM tbl_movie WHERE id = :id")
-    suspend fun getFavouriteMovie(id: Int): MovieEntity?
+    @Query("SELECT * FROM tbl_favourite_movie WHERE id = :id")
+    suspend fun getFavouriteMovie(id: Int): FavouriteMovieEntity?
 }

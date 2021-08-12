@@ -7,7 +7,7 @@ import com.franzandel.moviesubmission.core.data.wrapper.Result
 import com.franzandel.moviesubmission.core.external.coroutine.CoroutineThread
 import com.franzandel.moviesubmission.core.mapper.BaseMapper
 import com.franzandel.moviesubmission.core.presentation.vm.BaseViewModel
-import com.franzandel.moviesubmission.domain.model.MovieRequest
+import com.franzandel.moviesubmission.domain.model.FavouriteMovieReq
 import com.franzandel.moviesubmission.domain.usecase.MoviesUseCase
 import com.franzandel.moviesubmission.presentation.popularmovies.model.PopularMovieResUI
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,7 +18,7 @@ import javax.inject.Inject
 class PopularMoviesVM @Inject constructor(
     private val moviesUseCase: MoviesUseCase,
     private val coroutineThread: CoroutineThread,
-    private val mapper: BaseMapper<PopularMovieResUI, MovieRequest>
+    private val mapper: BaseMapper<PopularMovieResUI, FavouriteMovieReq>
 ) : BaseViewModel() {
 
     private val _insertFavouriteMovie = MutableLiveData<Unit>()
@@ -26,8 +26,8 @@ class PopularMoviesVM @Inject constructor(
 
     fun insertFavouriteMovie(popularMovieResUI: PopularMovieResUI) {
         viewModelScope.launch(coroutineThread.background()) {
-            val movieRequest = mapper.map(popularMovieResUI)
-            when (val result = moviesUseCase.insertFavouriteMovie(movieRequest)) {
+            val favouriteMovieReq = mapper.map(popularMovieResUI)
+            when (val result = moviesUseCase.insertFavouriteMovie(favouriteMovieReq)) {
                 is Result.Success -> _insertFavouriteMovie.postValue(result.data)
                 is Result.Error -> _error.postValue(result.error.localizedMessage)
             }
@@ -39,8 +39,8 @@ class PopularMoviesVM @Inject constructor(
 
     fun deleteFavouriteMovie(popularMovieResUI: PopularMovieResUI) {
         viewModelScope.launch(coroutineThread.background()) {
-            val movieRequest = mapper.map(popularMovieResUI)
-            when (val result = moviesUseCase.deleteFavouriteMovie(movieRequest)) {
+            val favouriteMovieReq = mapper.map(popularMovieResUI)
+            when (val result = moviesUseCase.deleteFavouriteMovie(favouriteMovieReq)) {
                 is Result.Success -> _deleteFavouriteMovie.postValue(result.data)
                 is Result.Error -> _error.postValue(result.error.localizedMessage)
             }

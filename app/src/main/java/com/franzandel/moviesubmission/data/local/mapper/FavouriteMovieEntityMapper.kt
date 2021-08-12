@@ -1,20 +1,21 @@
 package com.franzandel.moviesubmission.data.local.mapper
 
 import com.franzandel.moviesubmission.core.mapper.BaseMapper
-import com.franzandel.moviesubmission.data.local.entity.MovieEntity
-import com.franzandel.moviesubmission.domain.model.MovieResponse
+import com.franzandel.moviesubmission.data.local.entity.FavouriteMovieEntity
+import com.franzandel.moviesubmission.domain.model.FavouriteMovieReq
 import javax.inject.Inject
 
 /**
- * Created by Franz Andel on 12/08/21.
+ * Created by Franz Andel on 11/08/21.
  * Android Engineer
  */
 
-class MovieResponseMapper @Inject constructor() : BaseMapper<MovieEntity, MovieResponse>() {
+class FavouriteMovieEntityMapper @Inject constructor() :
+    BaseMapper<FavouriteMovieReq, FavouriteMovieEntity>() {
 
-    override fun map(dataModel: MovieEntity): MovieResponse =
+    override fun map(dataModel: FavouriteMovieReq): FavouriteMovieEntity =
         with(dataModel) {
-            MovieResponse(
+            FavouriteMovieEntity(
                 id = id,
                 adult = adult,
                 backdropPath = backdropPath,

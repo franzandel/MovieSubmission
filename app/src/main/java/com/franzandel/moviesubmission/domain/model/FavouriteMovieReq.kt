@@ -5,7 +5,7 @@ package com.franzandel.moviesubmission.domain.model
  * Android Engineer
  */
 
-data class MovieRequest(
+data class FavouriteMovieReq(
     val id: Int,
     val adult: Boolean,
     val backdropPath: String,
