@@ -41,8 +41,8 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_detail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/margin_100"
+            android:layout_height="@dimen/margin_200"
             android:layout_marginStart="@dimen/margin_16"
             android:translationZ="@dimen/margin_8"
             app:layout_constraintStart_toStartOf="parent"
@@ -110,7 +110,7 @@
             app:layout_constraintTop_toBottomOf="@+id/iv_total_vote" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_released_date"
+            android:id="@+id/tv_release_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_8"

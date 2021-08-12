@@ -3,7 +3,7 @@ package com.franzandel.moviesubmission.presentation.navigation
 import android.content.Context
 import com.franzandel.moviesubmission.core.external.extension.goTo
 import com.franzandel.moviesubmission.data.consts.BundleConst
-import com.franzandel.moviesubmission.presentation.detail.DetailActivity
+import com.franzandel.moviesubmission.presentation.detail.activity.DetailActivity
 import com.franzandel.moviesubmission.presentation.popularmovies.model.PopularMovieResUI
 import dagger.hilt.android.qualifiers.ActivityContext
 import javax.inject.Inject
