@@ -30,7 +30,11 @@ class PopularMoviesFragment : Fragment() {
     private val adapter by lazy {
         PopularMoviesAdapter { popularMoviesResUI, ivFavourite ->
             this.ivFavourite = ivFavourite
-            popularMoviesVM.insertFavouriteMovie(popularMoviesResUI)
+
+            if (ivFavourite.isSelected)
+                popularMoviesVM.deleteFavouriteMovie(popularMoviesResUI)
+            else
+                popularMoviesVM.insertFavouriteMovie(popularMoviesResUI)
         }
     }
 
@@ -74,6 +78,10 @@ class PopularMoviesFragment : Fragment() {
 
         viewLifecycleOwner.observe(popularMoviesVM.insertFavouriteMovie) {
             ivFavourite?.isSelected = true
+        }
+
+        viewLifecycleOwner.observe(popularMoviesVM.deleteFavouriteMovie) {
+            ivFavourite?.isSelected = false
         }
     }
 }
