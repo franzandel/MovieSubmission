@@ -18,7 +18,8 @@ class PopularMoviesVH(private val itemPopularMoviesBinding: ItemPopularMoviesBin
 
     fun bind(
         popularMovieResUI: PopularMovieResUI,
-        favouriteClicked: (popularMovieResUI: PopularMovieResUI, ivFavourite: ImageView) -> Unit
+        favouriteClicked: (popularMovieResUI: PopularMovieResUI, ivFavourite: ImageView) -> Unit,
+        detailClicked: (popularMovieResUI: PopularMovieResUI) -> Unit
     ) {
         with(itemPopularMoviesBinding) {
             tvTitle.text = popularMovieResUI.title
@@ -34,6 +35,10 @@ class PopularMoviesVH(private val itemPopularMoviesBinding: ItemPopularMoviesBin
 
             ivFavourite.setOnClickListener {
                 favouriteClicked.invoke(popularMovieResUI, ivFavourite)
+            }
+
+            root.setOnClickListener {
+                detailClicked.invoke(popularMovieResUI)
             }
         }
     }

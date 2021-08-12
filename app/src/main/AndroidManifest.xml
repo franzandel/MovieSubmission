@@ -12,10 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MovieSubmission">
+        <activity android:name=".presentation.detail.activity.DetailActivity" />
         <activity
             android:name=".presentation.dashboard.activity.DashboardActivity"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.MovieSubmission.NoActionBar">
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

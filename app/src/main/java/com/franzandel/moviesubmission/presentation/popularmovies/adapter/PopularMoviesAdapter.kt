@@ -15,7 +15,8 @@ import com.franzandel.moviesubmission.presentation.popularmovies.vh.PopularMovie
  */
 
 class PopularMoviesAdapter(
-    private val favouriteClicked: (popularMovieResUI: PopularMovieResUI, ivFavourite: ImageView) -> Unit
+    private val favouriteClicked: (popularMovieResUI: PopularMovieResUI, ivFavourite: ImageView) -> Unit,
+    private val detailClicked: (popularMovieResUI: PopularMovieResUI) -> Unit
 ) : BaseAdapter<PopularMovieResUI, PopularMoviesVH, ItemPopularMoviesBinding>(
     PopularMoviesDiffCallback()
 ) {
@@ -31,6 +32,6 @@ class PopularMoviesAdapter(
     }
 
     override fun onBindViewHolder(holder: PopularMoviesVH, position: Int) {
-        holder.bind(currentList[position], favouriteClicked)
+        holder.bind(currentList[position], favouriteClicked, detailClicked)
     }
 }

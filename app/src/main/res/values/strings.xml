@@ -3,4 +3,8 @@
     <string name="popular_movies_tab_title">Popular</string>
     <string name="top_rated_movies_tab_title">Top Rated</string>
     <string name="favourite_movies_tab_title">Favourite</string>
+
+    <string name="menu_share">Share</string>
+
+    <string name="detail_overview_title">Overview</string>
 </resources>

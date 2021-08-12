@@ -1,10 +1,14 @@
 package com.franzandel.moviesubmission.presentation.popularmovies.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
 /**
  * Created by Franz Andel on 11/08/21.
  * Android Engineer
  */
 
+@Parcelize
 data class PopularMovieResUI(
     val adult: Boolean,
     val backdropPath: String,
@@ -21,4 +25,4 @@ data class PopularMovieResUI(
     val voteAverage: Double,
     val voteCount: Int,
     val isFavourite: Boolean
-)
+) : Parcelable
