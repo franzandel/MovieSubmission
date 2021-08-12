@@ -2,7 +2,7 @@ package com.franzandel.moviesubmission.data.local.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.franzandel.moviesubmission.data.local.dao.MoviesDao
+import com.franzandel.moviesubmission.data.local.dao.FavouriteMoviesDao
 import com.franzandel.moviesubmission.data.local.entity.MovieEntity
 
 /**
@@ -16,5 +16,5 @@ import com.franzandel.moviesubmission.data.local.entity.MovieEntity
     exportSchema = false
 )
 abstract class MoviesDatabase : RoomDatabase() {
-    abstract fun moviesDao(): MoviesDao
+    abstract fun moviesDao(): FavouriteMoviesDao
 }

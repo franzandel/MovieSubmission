@@ -2,7 +2,7 @@ package com.franzandel.moviesubmission.di
 
 import com.franzandel.moviesubmission.core.mapper.BaseMapper
 import com.franzandel.moviesubmission.core.mapper.RetrofitResMapper
-import com.franzandel.moviesubmission.data.local.dao.MoviesDao
+import com.franzandel.moviesubmission.data.local.dao.FavouriteMoviesDao
 import com.franzandel.moviesubmission.data.local.database.MoviesDatabase
 import com.franzandel.moviesubmission.data.remote.mapper.RetrofitGenresResMapper
 import com.franzandel.moviesubmission.data.remote.mapper.RetrofitMoviesResMapper
@@ -69,5 +69,6 @@ object MoviesModule {
 
     @Provides
     @ViewModelScoped
-    fun provideMoviesDao(database: MoviesDatabase): MoviesDao = database.moviesDao()
+    fun provideFavouriteMoviesDao(database: MoviesDatabase): FavouriteMoviesDao =
+        database.moviesDao()
 }

@@ -1,7 +1,6 @@
-package com.franzandel.moviesubmission.domain.repository
+package com.franzandel.moviesubmission.data.local
 
 import com.franzandel.moviesubmission.core.data.wrapper.Result
-import com.franzandel.moviesubmission.domain.model.MovieGenreRes
 import com.franzandel.moviesubmission.domain.model.MovieRequest
 
 /**
@@ -9,7 +8,6 @@ import com.franzandel.moviesubmission.domain.model.MovieRequest
  * Android Engineer
  */
 
-interface MoviesRepository {
-    suspend fun getMovies(): Result<List<MovieGenreRes>>
+interface MoviesLocalData {
     suspend fun insertFavouriteMovie(movieRequest: MovieRequest): Result<Unit>
 }

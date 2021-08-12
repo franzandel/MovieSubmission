@@ -9,6 +9,7 @@ import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.CertificatePinner
 import okhttp3.OkHttpClient
@@ -62,7 +63,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideMoviesDatabase(context: Context): MoviesDatabase =
+    fun provideMoviesDatabase(@ApplicationContext context: Context): MoviesDatabase =
         Room.databaseBuilder(
             context,
             MoviesDatabase::class.java,
