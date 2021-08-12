@@ -4,10 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.franzandel.moviesubmission.core.external.extension.observe
 import com.franzandel.moviesubmission.data.consts.RecyclerViewConst
@@ -18,21 +18,24 @@ import com.franzandel.moviesubmission.presentation.popularmovies.vm.PopularMovie
 
 class PopularMoviesFragment : Fragment() {
 
-    private val viewModel: DashboardVM by activityViewModels()
+    private val dashboardVM: DashboardVM by activityViewModels()
 
-    private lateinit var pageViewModel: PopularMoviesVM
+    private val popularMoviesVM: PopularMoviesVM by activityViewModels()
+
     private var _binding: FragmentPopularMoviesBinding? = null
     private val binding get() = _binding!!
 
+    private var ivFavourite: ImageView? = null
+
     private val adapter by lazy {
-        PopularMoviesAdapter {
-            Toast.makeText(requireContext(), "Favourite Clicked", Toast.LENGTH_SHORT).show()
+        PopularMoviesAdapter { popularMoviesResUI, ivFavourite ->
+            this.ivFavourite = ivFavourite
+            popularMoviesVM.insertFavouriteMovie(popularMoviesResUI)
         }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        pageViewModel = ViewModelProvider(this).get(PopularMoviesVM::class.java)
     }
 
     override fun onCreateView(
@@ -61,12 +64,16 @@ class PopularMoviesFragment : Fragment() {
     }
 
     private fun setupObserver() {
-        viewLifecycleOwner.observe(viewModel.popularMovies) {
+        viewLifecycleOwner.observe(dashboardVM.popularMovies) {
             adapter.submitList(it)
         }
 
-        viewLifecycleOwner.observe(viewModel.error) {
+        viewLifecycleOwner.observe(dashboardVM.error) {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+        }
+
+        viewLifecycleOwner.observe(popularMoviesVM.insertFavouriteMovie) {
+            ivFavourite?.isSelected = true
         }
     }
 }

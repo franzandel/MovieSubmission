@@ -1,5 +1,6 @@
 package com.franzandel.moviesubmission.presentation.popularmovies.vh
 
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.franzandel.moviesubmission.BuildConfig
@@ -15,11 +16,13 @@ import com.franzandel.moviesubmission.presentation.popularmovies.model.PopularMo
 class PopularMoviesVH(private val itemPopularMoviesBinding: ItemPopularMoviesBinding) :
     RecyclerView.ViewHolder(itemPopularMoviesBinding.root) {
 
-    fun bind(popularMovieResUI: PopularMovieResUI, favouriteClicked: () -> Unit) {
+    fun bind(
+        popularMovieResUI: PopularMovieResUI,
+        favouriteClicked: (popularMovieResUI: PopularMovieResUI, ivFavourite: ImageView) -> Unit
+    ) {
         with(itemPopularMoviesBinding) {
             tvTitle.text = popularMovieResUI.title
             tvGenre.text = popularMovieResUI.genres
-            ivFavourite.isSelected = true
 
             val imageUrl = BuildConfig.MOVIE_DB_IMAGE_BASE_URL + popularMovieResUI.posterPath
             Glide.with(root.context)
@@ -29,12 +32,8 @@ class PopularMoviesVH(private val itemPopularMoviesBinding: ItemPopularMoviesBin
                 .into(ivPopularMovies)
 
             ivFavourite.setOnClickListener {
-                favouriteClicked.invoke()
+                favouriteClicked.invoke(popularMovieResUI, ivFavourite)
             }
         }
-    }
-
-    fun setIsFavourite(isFavourite: Boolean) {
-        itemPopularMoviesBinding.ivFavourite.isSelected = isFavourite
     }
 }

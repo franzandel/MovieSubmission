@@ -2,6 +2,7 @@ package com.franzandel.moviesubmission.presentation.popularmovies.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import com.franzandel.moviesubmission.core.presentation.adapter.BaseAdapter
 import com.franzandel.moviesubmission.databinding.ItemPopularMoviesBinding
 import com.franzandel.moviesubmission.presentation.popularmovies.diffcallback.PopularMoviesDiffCallback
@@ -13,10 +14,11 @@ import com.franzandel.moviesubmission.presentation.popularmovies.vh.PopularMovie
  * Android Engineer
  */
 
-class PopularMoviesAdapter(private val favouriteClicked: () -> Unit) :
-    BaseAdapter<PopularMovieResUI, PopularMoviesVH, ItemPopularMoviesBinding>(
-        PopularMoviesDiffCallback()
-    ) {
+class PopularMoviesAdapter(
+    private val favouriteClicked: (popularMovieResUI: PopularMovieResUI, ivFavourite: ImageView) -> Unit
+) : BaseAdapter<PopularMovieResUI, PopularMoviesVH, ItemPopularMoviesBinding>(
+    PopularMoviesDiffCallback()
+) {
 
     private lateinit var viewHolder: PopularMoviesVH
 
@@ -30,9 +32,5 @@ class PopularMoviesAdapter(private val favouriteClicked: () -> Unit) :
 
     override fun onBindViewHolder(holder: PopularMoviesVH, position: Int) {
         holder.bind(currentList[position], favouriteClicked)
-    }
-
-    fun setIsFavourite(isFavourite: Boolean) {
-        viewHolder.setIsFavourite(isFavourite)
     }
 }
