@@ -13,10 +13,17 @@ import com.franzandel.moviesubmission.core.external.extension.observe
 import com.franzandel.moviesubmission.data.consts.RecyclerViewConst
 import com.franzandel.moviesubmission.databinding.FragmentPopularMoviesBinding
 import com.franzandel.moviesubmission.presentation.dashboard.vm.DashboardVM
+import com.franzandel.moviesubmission.presentation.navigation.MoviesNavigation
 import com.franzandel.moviesubmission.presentation.popularmovies.adapter.PopularMoviesAdapter
 import com.franzandel.moviesubmission.presentation.popularmovies.vm.PopularMoviesVM
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class PopularMoviesFragment : Fragment() {
+
+    @Inject
+    lateinit var navigation: MoviesNavigation
 
     private val dashboardVM: DashboardVM by activityViewModels()
 
@@ -28,14 +35,16 @@ class PopularMoviesFragment : Fragment() {
     private var ivFavourite: ImageView? = null
 
     private val adapter by lazy {
-        PopularMoviesAdapter { popularMoviesResUI, ivFavourite ->
+        PopularMoviesAdapter({ popularMoviesResUI, ivFavourite ->
             this.ivFavourite = ivFavourite
 
             if (ivFavourite.isSelected)
                 popularMoviesVM.deleteFavouriteMovie(popularMoviesResUI)
             else
                 popularMoviesVM.insertFavouriteMovie(popularMoviesResUI)
-        }
+        }, { popularMovieResUI ->
+            navigation.goToDetail(popularMovieResUI)
+        })
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
