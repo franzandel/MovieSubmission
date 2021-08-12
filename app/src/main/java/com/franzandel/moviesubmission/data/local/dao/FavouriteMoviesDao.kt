@@ -9,17 +9,17 @@ import com.franzandel.moviesubmission.data.local.entity.MovieEntity
  */
 
 @Dao
-interface MoviesDao {
+interface FavouriteMoviesDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertMovieEntity(movieEntity: MovieEntity): Long
+    suspend fun insertFavouriteMovie(movieEntity: MovieEntity): Long
 
     @Delete
-    suspend fun deleteMovieEntity(movieEntity: MovieEntity): Int
+    suspend fun deleteFavouriteMovie(movieEntity: MovieEntity): Int
 
     @Query("SELECT * FROM tbl_movie")
-    suspend fun getMovieEntities(): List<MovieEntity>
+    suspend fun getFavouriteMovies(): List<MovieEntity>
 
     @Query("SELECT * FROM tbl_movie WHERE id = :id")
-    suspend fun getMovieEntity(id: Int): MovieEntity?
+    suspend fun getFavouriteMovie(id: Int): MovieEntity?
 }

@@ -16,7 +16,7 @@ import dagger.multibindings.IntoMap
 
 @Module
 @InstallIn(ViewModelComponent::class)
-abstract class DashboardModule {
+abstract class DashboardAbstractModule {
 
     @Binds
     @IntoMap

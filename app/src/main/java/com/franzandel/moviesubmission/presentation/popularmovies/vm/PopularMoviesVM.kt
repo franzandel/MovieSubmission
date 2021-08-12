@@ -2,17 +2,35 @@ package com.franzandel.moviesubmission.presentation.popularmovies.vm
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.franzandel.moviesubmission.core.data.wrapper.Result
+import com.franzandel.moviesubmission.core.external.coroutine.CoroutineThread
+import com.franzandel.moviesubmission.core.mapper.BaseMapper
+import com.franzandel.moviesubmission.core.presentation.vm.BaseViewModel
+import com.franzandel.moviesubmission.domain.model.MovieRequest
+import com.franzandel.moviesubmission.domain.usecase.MoviesUseCase
+import com.franzandel.moviesubmission.presentation.popularmovies.model.PopularMovieResUI
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class PopularMoviesVM : ViewModel() {
+@HiltViewModel
+class PopularMoviesVM @Inject constructor(
+    private val moviesUseCase: MoviesUseCase,
+    private val coroutineThread: CoroutineThread,
+    private val mapper: BaseMapper<PopularMovieResUI, MovieRequest>
+) : BaseViewModel() {
 
-    private val _index = MutableLiveData<Int>()
-    val text: LiveData<String> = Transformations.map(_index) {
-        "Hello world from section: $it"
-    }
+    private val _insertFavouriteMovie = MutableLiveData<Unit>()
+    val insertFavouriteMovie: LiveData<Unit> = _insertFavouriteMovie
 
-    fun setIndex(index: Int) {
-        _index.value = index
+    fun insertFavouriteMovie(popularMovieResUI: PopularMovieResUI) {
+        viewModelScope.launch(coroutineThread.background()) {
+            val movieRequest = mapper.map(popularMovieResUI)
+            when (val result = moviesUseCase.insertFavouriteMovie(movieRequest)) {
+                is Result.Success -> _insertFavouriteMovie.postValue(result.data)
+                is Result.Error -> _error.postValue(result.error.localizedMessage)
+            }
+        }
     }
 }
