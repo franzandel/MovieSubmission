@@ -1,15 +1,15 @@
-package com.franzandel.moviesubmission.presentation.topratedmovies.model
+package com.franzandel.moviesubmission.domain.model
 
 /**
- * Created by Franz Andel on 11/08/21.
+ * Created by Franz Andel on 12/08/21.
  * Android Engineer
  */
 
-data class TopRatedMovieResUI(
+data class MovieResponse(
+    val id: Int,
     val adult: Boolean,
     val backdropPath: String,
     val genres: String,
-    val id: Int,
     val originalLanguage: String,
     val originalTitle: String,
     val overview: String,
@@ -19,6 +19,5 @@ data class TopRatedMovieResUI(
     val title: String,
     val video: Boolean,
     val voteAverage: Double,
-    val voteCount: Int,
-    val isFavourite: Boolean
+    val voteCount: Int
 )

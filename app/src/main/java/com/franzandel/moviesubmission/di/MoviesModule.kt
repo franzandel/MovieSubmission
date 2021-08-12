@@ -4,6 +4,8 @@ import com.franzandel.moviesubmission.core.mapper.BaseMapper
 import com.franzandel.moviesubmission.core.mapper.RetrofitResMapper
 import com.franzandel.moviesubmission.data.local.dao.FavouriteMoviesDao
 import com.franzandel.moviesubmission.data.local.database.MoviesDatabase
+import com.franzandel.moviesubmission.data.local.entity.MovieEntity
+import com.franzandel.moviesubmission.data.local.mapper.MoviesResponseMapper
 import com.franzandel.moviesubmission.data.remote.mapper.RetrofitGenresResMapper
 import com.franzandel.moviesubmission.data.remote.mapper.RetrofitMoviesResMapper
 import com.franzandel.moviesubmission.data.remote.model.GenresResDTO
@@ -12,6 +14,7 @@ import com.franzandel.moviesubmission.data.remote.network.MoviesNetworkService
 import com.franzandel.moviesubmission.domain.model.GenreRes
 import com.franzandel.moviesubmission.domain.model.MovieGenreRes
 import com.franzandel.moviesubmission.domain.model.MovieRes
+import com.franzandel.moviesubmission.domain.model.MovieResponse
 import com.franzandel.moviesubmission.presentation.mapper.GenresResUIMapper
 import com.franzandel.moviesubmission.presentation.popularmovies.mapper.PopularMovieResUIMapper
 import com.franzandel.moviesubmission.presentation.popularmovies.model.PopularMovieResUI
@@ -66,6 +69,11 @@ object MoviesModule {
         genresResUIMapper: BaseMapper<List<GenreRes>, String>
     ): BaseMapper<List<MovieGenreRes>, List<TopRatedMovieResUI>> =
         TopRatedMovieResUIMapper(genresResUIMapper)
+
+    @Provides
+    @ViewModelScoped
+    fun provideMoviesResponseMapper(): BaseMapper<List<MovieEntity>, List<MovieResponse>> =
+        MoviesResponseMapper()
 
     @Provides
     @ViewModelScoped

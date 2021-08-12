@@ -19,5 +19,6 @@ data class MovieGenreRes(
     val title: String,
     val video: Boolean,
     val voteAverage: Double,
-    val voteCount: Int
+    val voteCount: Int,
+    var isFavourite: Boolean = false
 )

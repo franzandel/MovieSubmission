@@ -5,10 +5,12 @@ import com.franzandel.moviesubmission.data.local.MoviesLocalData
 import com.franzandel.moviesubmission.data.local.MoviesLocalDataImpl
 import com.franzandel.moviesubmission.data.local.entity.MovieEntity
 import com.franzandel.moviesubmission.data.local.mapper.MovieEntityMapper
+import com.franzandel.moviesubmission.data.local.mapper.MovieResponseMapper
 import com.franzandel.moviesubmission.data.remote.MoviesRemoteData
 import com.franzandel.moviesubmission.data.remote.MoviesRemoteDataImpl
 import com.franzandel.moviesubmission.data.repository.MoviesRepositoryImpl
 import com.franzandel.moviesubmission.domain.model.MovieRequest
+import com.franzandel.moviesubmission.domain.model.MovieResponse
 import com.franzandel.moviesubmission.domain.repository.MoviesRepository
 import com.franzandel.moviesubmission.domain.usecase.MoviesUseCase
 import com.franzandel.moviesubmission.domain.usecase.MoviesUseCaseImpl
@@ -42,6 +44,10 @@ abstract class MoviesAbstractModule {
     @Binds
     @ViewModelScoped
     abstract fun provideMovieEntityMapper(movieEntityMapper: MovieEntityMapper): BaseMapper<MovieRequest, MovieEntity>
+
+    @Binds
+    @ViewModelScoped
+    abstract fun provideMovieResponseMapper(movieRequestMapper: MovieResponseMapper): BaseMapper<MovieEntity, MovieResponse>
 
     @Binds
     @ViewModelScoped
