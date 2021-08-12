@@ -13,4 +13,7 @@ class MoviesUseCaseImpl @Inject constructor(private val repository: MoviesReposi
 
     override suspend fun insertFavouriteMovie(movieRequest: MovieRequest): Result<Unit> =
         repository.insertFavouriteMovie(movieRequest)
+
+    override suspend fun deleteFavouriteMovie(movieRequest: MovieRequest): Result<Unit> =
+        repository.deleteFavouriteMovie(movieRequest)
 }

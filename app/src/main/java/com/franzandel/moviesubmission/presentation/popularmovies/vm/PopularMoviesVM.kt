@@ -33,4 +33,17 @@ class PopularMoviesVM @Inject constructor(
             }
         }
     }
+
+    private val _deleteFavouriteMovie = MutableLiveData<Unit>()
+    val deleteFavouriteMovie: LiveData<Unit> = _deleteFavouriteMovie
+
+    fun deleteFavouriteMovie(popularMovieResUI: PopularMovieResUI) {
+        viewModelScope.launch(coroutineThread.background()) {
+            val movieRequest = mapper.map(popularMovieResUI)
+            when (val result = moviesUseCase.deleteFavouriteMovie(movieRequest)) {
+                is Result.Success -> _deleteFavouriteMovie.postValue(result.data)
+                is Result.Error -> _error.postValue(result.error.localizedMessage)
+            }
+        }
+    }
 }

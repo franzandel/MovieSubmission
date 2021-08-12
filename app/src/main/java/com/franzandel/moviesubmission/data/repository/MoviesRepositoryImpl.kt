@@ -33,4 +33,7 @@ class MoviesRepositoryImpl @Inject constructor(
 
     override suspend fun insertFavouriteMovie(movieRequest: MovieRequest): Result<Unit> =
         localData.insertFavouriteMovie(movieRequest)
+
+    override suspend fun deleteFavouriteMovie(movieRequest: MovieRequest): Result<Unit> =
+        localData.deleteFavouriteMovie(movieRequest)
 }
