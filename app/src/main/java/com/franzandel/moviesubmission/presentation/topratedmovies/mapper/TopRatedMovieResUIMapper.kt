@@ -29,7 +29,8 @@ class TopRatedMovieResUIMapper(private val genresResUIMapper: BaseMapper<List<Ge
                 title = it.title,
                 video = it.video,
                 voteAverage = it.voteAverage,
-                voteCount = it.voteCount
+                voteCount = it.voteCount,
+                isFavourite = it.isFavourite
             )
         }.sortedByDescending {
             it.voteAverage

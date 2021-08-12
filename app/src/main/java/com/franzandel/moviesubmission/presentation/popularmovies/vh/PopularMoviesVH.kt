@@ -23,6 +23,7 @@ class PopularMoviesVH(private val itemPopularMoviesBinding: ItemPopularMoviesBin
         with(itemPopularMoviesBinding) {
             tvTitle.text = popularMovieResUI.title
             tvGenre.text = popularMovieResUI.genres
+            ivFavourite.isSelected = popularMovieResUI.isFavourite
 
             val imageUrl = BuildConfig.MOVIE_DB_IMAGE_BASE_URL + popularMovieResUI.posterPath
             Glide.with(root.context)
