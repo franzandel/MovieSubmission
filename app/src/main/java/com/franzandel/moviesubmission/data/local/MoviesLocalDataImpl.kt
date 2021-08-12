@@ -21,4 +21,11 @@ class MoviesLocalDataImpl @Inject constructor(
             val result = dao.insertFavouriteMovie(movieEntity)
             mapLocalResponse(result, Unit, DatabaseConst.ERROR_INSERT_TO_DB)
         }
+
+    override suspend fun deleteFavouriteMovie(movieRequest: MovieRequest): Result<Unit> =
+        suspendTryCatch {
+            val movieEntity = mapper.map(movieRequest)
+            val result = dao.deleteFavouriteMovie(movieEntity)
+            mapLocalResponse(result, Unit, DatabaseConst.ERROR_DELETE_FROM_DB)
+        }
 }

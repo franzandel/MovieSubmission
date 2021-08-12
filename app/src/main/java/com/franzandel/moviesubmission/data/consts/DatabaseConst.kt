@@ -7,4 +7,5 @@ package com.franzandel.moviesubmission.data.consts
 
 object DatabaseConst {
     const val ERROR_INSERT_TO_DB = "Error insert to DB"
+    const val ERROR_DELETE_FROM_DB = "Error delete from DB"
 }

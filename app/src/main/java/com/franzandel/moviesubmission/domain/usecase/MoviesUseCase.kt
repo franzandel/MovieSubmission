@@ -12,4 +12,5 @@ import com.franzandel.moviesubmission.domain.model.MovieRequest
 interface MoviesUseCase {
     suspend fun getMovies(): Result<List<MovieGenreRes>>
     suspend fun insertFavouriteMovie(movieRequest: MovieRequest): Result<Unit>
+    suspend fun deleteFavouriteMovie(movieRequest: MovieRequest): Result<Unit>
 }

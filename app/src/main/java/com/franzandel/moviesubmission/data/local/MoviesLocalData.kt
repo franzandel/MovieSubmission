@@ -10,4 +10,5 @@ import com.franzandel.moviesubmission.domain.model.MovieRequest
 
 interface MoviesLocalData {
     suspend fun insertFavouriteMovie(movieRequest: MovieRequest): Result<Unit>
+    suspend fun deleteFavouriteMovie(movieRequest: MovieRequest): Result<Unit>
 }
