@@ -1,7 +1,7 @@
 package com.franzandel.moviesubmission.presentation.popularmovies.mapper
 
 import com.franzandel.moviesubmission.core.mapper.BaseMapper
-import com.franzandel.moviesubmission.domain.model.MovieRequest
+import com.franzandel.moviesubmission.domain.model.FavouriteMovieReq
 import com.franzandel.moviesubmission.presentation.popularmovies.model.PopularMovieResUI
 import javax.inject.Inject
 
@@ -10,11 +10,12 @@ import javax.inject.Inject
  * Android Engineer
  */
 
-class MovieRequestMapper @Inject constructor() : BaseMapper<PopularMovieResUI, MovieRequest>() {
+class MovieRequestMapper @Inject constructor() :
+    BaseMapper<PopularMovieResUI, FavouriteMovieReq>() {
 
-    override fun map(dataModel: PopularMovieResUI): MovieRequest =
+    override fun map(dataModel: PopularMovieResUI): FavouriteMovieReq =
         with(dataModel) {
-            MovieRequest(
+            FavouriteMovieReq(
                 adult = adult,
                 backdropPath = backdropPath,
                 genres = genres,

@@ -9,8 +9,8 @@ import androidx.room.PrimaryKey
  * Android Engineer
  */
 
-@Entity(tableName = "tbl_movie")
-data class MovieEntity(
+@Entity(tableName = "tbl_favourite_movie")
+data class FavouriteMovieEntity(
     @PrimaryKey
     val id: Int,
     val adult: Boolean,

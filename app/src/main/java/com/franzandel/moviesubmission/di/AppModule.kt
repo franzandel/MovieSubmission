@@ -4,7 +4,7 @@ import android.content.Context
 import android.net.Uri
 import androidx.room.Room
 import com.franzandel.moviesubmission.BuildConfig
-import com.franzandel.moviesubmission.data.local.database.MoviesDatabase
+import com.franzandel.moviesubmission.data.local.database.FavouriteMoviesDatabase
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
@@ -63,10 +63,10 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideMoviesDatabase(@ApplicationContext context: Context): MoviesDatabase =
+    fun provideFavouriteMoviesDatabase(@ApplicationContext context: Context): FavouriteMoviesDatabase =
         Room.databaseBuilder(
             context,
-            MoviesDatabase::class.java,
+            FavouriteMoviesDatabase::class.java,
             MOVIES_DB_NAME
         ).fallbackToDestructiveMigration()
             .build()

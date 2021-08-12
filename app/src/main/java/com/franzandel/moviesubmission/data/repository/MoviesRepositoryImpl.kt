@@ -7,9 +7,9 @@ import com.franzandel.moviesubmission.data.local.MoviesLocalData
 import com.franzandel.moviesubmission.data.remote.MoviesRemoteData
 import com.franzandel.moviesubmission.data.remote.mapper.GenresResMapper
 import com.franzandel.moviesubmission.data.remote.mapper.MoviesGenresResMapper
+import com.franzandel.moviesubmission.domain.model.FavouriteMovieReq
+import com.franzandel.moviesubmission.domain.model.FavouriteMovieRes
 import com.franzandel.moviesubmission.domain.model.MovieGenreRes
-import com.franzandel.moviesubmission.domain.model.MovieRequest
-import com.franzandel.moviesubmission.domain.model.MovieResponse
 import com.franzandel.moviesubmission.domain.repository.MoviesRepository
 import javax.inject.Inject
 
@@ -30,12 +30,12 @@ class MoviesRepositoryImpl @Inject constructor(
             Result.Success(moviesGenresRes)
         }
 
-    override suspend fun insertFavouriteMovie(movieRequest: MovieRequest): Result<Unit> =
-        localData.insertFavouriteMovie(movieRequest)
+    override suspend fun insertFavouriteMovie(favouriteMovieReq: FavouriteMovieReq): Result<Unit> =
+        localData.insertFavouriteMovie(favouriteMovieReq)
 
-    override suspend fun deleteFavouriteMovie(movieRequest: MovieRequest): Result<Unit> =
-        localData.deleteFavouriteMovie(movieRequest)
+    override suspend fun deleteFavouriteMovie(favouriteMovieReq: FavouriteMovieReq): Result<Unit> =
+        localData.deleteFavouriteMovie(favouriteMovieReq)
 
-    override suspend fun getFavouriteMovies(): Result<List<MovieResponse>> =
+    override suspend fun getFavouriteMovies(): Result<List<FavouriteMovieRes>> =
         localData.getFavouriteMovies()
 }

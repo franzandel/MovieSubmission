@@ -3,18 +3,18 @@ package com.franzandel.moviesubmission.di
 import com.franzandel.moviesubmission.core.mapper.BaseMapper
 import com.franzandel.moviesubmission.core.mapper.RetrofitResMapper
 import com.franzandel.moviesubmission.data.local.dao.FavouriteMoviesDao
-import com.franzandel.moviesubmission.data.local.database.MoviesDatabase
-import com.franzandel.moviesubmission.data.local.entity.MovieEntity
-import com.franzandel.moviesubmission.data.local.mapper.MoviesResponseMapper
+import com.franzandel.moviesubmission.data.local.database.FavouriteMoviesDatabase
+import com.franzandel.moviesubmission.data.local.entity.FavouriteMovieEntity
+import com.franzandel.moviesubmission.data.local.mapper.FavouriteMoviesResponseMapper
 import com.franzandel.moviesubmission.data.remote.mapper.RetrofitGenresResMapper
 import com.franzandel.moviesubmission.data.remote.mapper.RetrofitMoviesResMapper
 import com.franzandel.moviesubmission.data.remote.model.GenresResDTO
 import com.franzandel.moviesubmission.data.remote.model.MoviesResDTO
 import com.franzandel.moviesubmission.data.remote.network.MoviesNetworkService
+import com.franzandel.moviesubmission.domain.model.FavouriteMovieRes
 import com.franzandel.moviesubmission.domain.model.GenreRes
 import com.franzandel.moviesubmission.domain.model.MovieGenreRes
 import com.franzandel.moviesubmission.domain.model.MovieRes
-import com.franzandel.moviesubmission.domain.model.MovieResponse
 import com.franzandel.moviesubmission.presentation.mapper.GenresResUIMapper
 import com.franzandel.moviesubmission.presentation.popularmovies.mapper.PopularMovieResUIMapper
 import com.franzandel.moviesubmission.presentation.popularmovies.model.PopularMovieResUI
@@ -72,11 +72,11 @@ object MoviesModule {
 
     @Provides
     @ViewModelScoped
-    fun provideMoviesResponseMapper(): BaseMapper<List<MovieEntity>, List<MovieResponse>> =
-        MoviesResponseMapper()
+    fun provideFavouriteMoviesResponseMapper(): BaseMapper<List<FavouriteMovieEntity>, List<FavouriteMovieRes>> =
+        FavouriteMoviesResponseMapper()
 
     @Provides
     @ViewModelScoped
-    fun provideFavouriteMoviesDao(database: MoviesDatabase): FavouriteMoviesDao =
-        database.moviesDao()
+    fun provideFavouriteMoviesDao(database: FavouriteMoviesDatabase): FavouriteMoviesDao =
+        database.favouriteMoviesDao()
 }
