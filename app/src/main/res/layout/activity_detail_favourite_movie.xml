@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.franzandel.moviesubmission.presentation.detailpopularmovie.activity.DetailPopularMovieActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:toolbarId="@+id/tb_detail">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_tb_detail"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_250"
+                android:scaleType="centerCrop"
+                tools:src="@drawable/ic_launcher_foreground" />
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/tb_detail"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:menu="@menu/menu_share"
+                app:navigationIcon="@drawable/ic_baseline_arrow_back_24" />
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="-16dp"
+        android:translationZ="@dimen/margin_8"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_detail"
+            android:layout_width="@dimen/margin_100"
+            android:layout_height="@dimen/margin_200"
+            android:layout_marginStart="@dimen/margin_16"
+            android:translationZ="@dimen/margin_8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@mipmap/ic_launcher_round" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_16"
+            android:layout_marginTop="@dimen/margin_32"
+            android:textSize="@dimen/text_size_18"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/iv_favourite"
+            app:layout_constraintStart_toEndOf="@+id/iv_detail"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Tomorrowland" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_vote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_16"
+            android:src="@drawable/ic_baseline_star_24"
+            app:layout_constraintStart_toStartOf="@+id/tv_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_vote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_8"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_vote"
+            app:layout_constraintStart_toEndOf="@+id/iv_vote"
+            app:layout_constraintTop_toTopOf="@+id/iv_vote"
+            tools:text="6.3/10" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_total_vote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_8"
+            android:src="@drawable/ic_baseline_people_alt_24"
+            app:layout_constraintStart_toStartOf="@+id/iv_vote"
+            app:layout_constraintTop_toBottomOf="@+id/iv_vote" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_total_vote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_8"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_total_vote"
+            app:layout_constraintStart_toEndOf="@+id/iv_total_vote"
+            app:layout_constraintTop_toTopOf="@+id/iv_total_vote"
+            tools:text="630 votes" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_released_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_8"
+            android:src="@drawable/ic_baseline_date_range_24"
+            app:layout_constraintStart_toStartOf="@+id/iv_total_vote"
+            app:layout_constraintTop_toBottomOf="@+id/iv_total_vote" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_release_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_8"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_released_date"
+            app:layout_constraintStart_toEndOf="@+id/iv_released_date"
+            app:layout_constraintTop_toTopOf="@+id/iv_released_date"
+            tools:text="22 May 2018" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_language"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_8"
+            android:src="@drawable/ic_baseline_language_24"
+            app:layout_constraintStart_toStartOf="@+id/iv_released_date"
+            app:layout_constraintTop_toBottomOf="@+id/iv_released_date" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_language"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_8"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_language"
+            app:layout_constraintStart_toEndOf="@+id/iv_language"
+            app:layout_constraintTop_toTopOf="@+id/iv_language"
+            tools:text="en" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_favourite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_32"
+            android:layout_marginEnd="@dimen/margin_16"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/favourite_selector" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_8"
+            android:layout_marginTop="@dimen/margin_48"
+            app:cardCornerRadius="@dimen/margin_8"
+            app:cardElevation="@dimen/margin_8"
+            app:layout_constraintTop_toBottomOf="@+id/iv_language">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_16"
+                    android:layout_marginTop="@dimen/margin_16"
+                    android:text="@string/detail_overview_title"
+                    android:textSize="@dimen/text_size_18"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_overview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_16"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:paddingBottom="@dimen/margin_16"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_total_vote"
+                    app:layout_constraintStart_toEndOf="@+id/iv_total_vote"
+                    app:layout_constraintTop_toTopOf="@+id/iv_total_vote"
+                    tools:text="Jen and a group of friends set out to hike the Appalachian Trail. Despite warnings to stick to the trail, the hikers stray off course—and cross into land inhabited by The Foundation, a hidden community of mountain dwellers who use deadly means to protect their way of life." />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </com.google.android.material.card.MaterialCardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

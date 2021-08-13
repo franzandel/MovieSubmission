@@ -1,4 +1,4 @@
-package com.franzandel.moviesubmission.presentation.favourite.model
+package com.franzandel.moviesubmission.presentation.favouritemovies.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

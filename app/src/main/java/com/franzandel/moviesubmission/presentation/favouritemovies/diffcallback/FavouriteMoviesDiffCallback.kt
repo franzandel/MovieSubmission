@@ -1,7 +1,7 @@
-package com.franzandel.moviesubmission.presentation.favourite.diffcallback
+package com.franzandel.moviesubmission.presentation.favouritemovies.diffcallback
 
 import androidx.recyclerview.widget.DiffUtil
-import com.franzandel.moviesubmission.presentation.favourite.model.FavouriteMovieResUI
+import com.franzandel.moviesubmission.presentation.favouritemovies.model.FavouriteMovieResUI
 
 /**
  * Created by Franz Andel on 10/08/21.

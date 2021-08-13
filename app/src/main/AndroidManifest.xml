@@ -12,6 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MovieSubmission">
+        <activity android:name=".presentation.detailfavouritemovie.activity.DetailFavouriteMovieActivity" />
         <activity android:name=".presentation.detailtopratedmovie.activity.DetailTopRatedMovieActivity" />
         <activity android:name=".presentation.detailpopularmovie.activity.DetailPopularMovieActivity" />
         <activity

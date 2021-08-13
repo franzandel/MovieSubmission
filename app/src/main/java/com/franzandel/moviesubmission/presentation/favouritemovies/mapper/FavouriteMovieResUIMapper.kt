@@ -1,8 +1,8 @@
-package com.franzandel.moviesubmission.presentation.favourite.mapper
+package com.franzandel.moviesubmission.presentation.favouritemovies.mapper
 
 import com.franzandel.moviesubmission.core.mapper.BaseMapper
 import com.franzandel.moviesubmission.domain.model.FavouriteMovieRes
-import com.franzandel.moviesubmission.presentation.favourite.model.FavouriteMovieResUI
+import com.franzandel.moviesubmission.presentation.favouritemovies.model.FavouriteMovieResUI
 
 /**
  * Created by Franz Andel on 13/08/21.

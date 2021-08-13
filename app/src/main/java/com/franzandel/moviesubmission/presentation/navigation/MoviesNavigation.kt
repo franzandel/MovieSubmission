@@ -1,5 +1,6 @@
 package com.franzandel.moviesubmission.presentation.navigation
 
+import com.franzandel.moviesubmission.presentation.favouritemovies.model.FavouriteMovieResUI
 import com.franzandel.moviesubmission.presentation.popularmovies.model.PopularMovieResUI
 import com.franzandel.moviesubmission.presentation.topratedmovies.model.TopRatedMovieResUI
 
@@ -11,4 +12,5 @@ import com.franzandel.moviesubmission.presentation.topratedmovies.model.TopRated
 interface MoviesNavigation {
     fun goToDetailPopularMovie(popularMovieResUI: PopularMovieResUI)
     fun goToDetailTopRatedMovie(topRatedMovieResUI: TopRatedMovieResUI)
+    fun goToDetailFavouriteMovie(favouriteMovieResUI: FavouriteMovieResUI)
 }
