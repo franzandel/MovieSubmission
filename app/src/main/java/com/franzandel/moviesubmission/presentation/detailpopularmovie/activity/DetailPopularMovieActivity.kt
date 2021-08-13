@@ -93,10 +93,12 @@ class DetailPopularMovieActivity : AppCompatActivity() {
     private fun setupObservers() {
         observe(viewModel.insertFavouriteMovie) {
             binding.ivFavourite.isSelected = true
+            popularMovieResUI?.isFavourite = true
         }
 
         observe(viewModel.deleteFavouriteMovie) {
             binding.ivFavourite.isSelected = false
+            popularMovieResUI?.isFavourite = false
         }
     }
 }

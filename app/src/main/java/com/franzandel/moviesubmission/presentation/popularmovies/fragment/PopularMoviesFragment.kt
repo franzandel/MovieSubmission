@@ -1,15 +1,13 @@
 package com.franzandel.moviesubmission.presentation.popularmovies.fragment
 
-import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.franzandel.moviesubmission.core.external.extension.observe
+import com.franzandel.moviesubmission.core.presentation.fragment.BaseFragmentVM
 import com.franzandel.moviesubmission.data.consts.RecyclerViewConst
 import com.franzandel.moviesubmission.databinding.FragmentPopularMoviesBinding
 import com.franzandel.moviesubmission.presentation.dashboard.vm.DashboardVM
@@ -21,7 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class PopularMoviesFragment : Fragment() {
+class PopularMoviesFragment : BaseFragmentVM<DashboardVM, FragmentPopularMoviesBinding>() {
 
     @Inject
     lateinit var navigation: MoviesNavigation
@@ -29,9 +27,6 @@ class PopularMoviesFragment : Fragment() {
     private val dashboardVM: DashboardVM by activityViewModels()
 
     private val popularMoviesVM: PopularMoviesVM by activityViewModels()
-
-    private var _binding: FragmentPopularMoviesBinding? = null
-    private val binding get() = _binding!!
 
     private var popularMovieResUI: PopularMovieResUI? = null
     private var ivFavourite: ImageView? = null
@@ -50,42 +45,26 @@ class PopularMoviesFragment : Fragment() {
         })
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentPopularMoviesBinding.inflate(inflater, container, false)
-        val root = binding.root
-
+    override fun onFragmentCreateView() {
         setupRV()
         setupObserver()
-        return root
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     private fun setupRV() {
-        binding.rvPopularMovies.layoutManager = GridLayoutManager(
+        viewBinding.rvPopularMovies.layoutManager = GridLayoutManager(
             requireContext(),
             RecyclerViewConst.GRID_SPAN_COUNT
         )
-        binding.rvPopularMovies.adapter = adapter
+        viewBinding.rvPopularMovies.adapter = adapter
     }
 
     private fun setupObserver() {
-        viewLifecycleOwner.observe(dashboardVM.popularMovies) {
-            adapter.submitList(it)
+        viewLifecycleOwner.observe(dashboardVM.popularMovies) { popularMoviesResUI ->
+            adapter.submitList(popularMoviesResUI)
         }
 
-        viewLifecycleOwner.observe(dashboardVM.error) {
-            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+        viewLifecycleOwner.observe(dashboardVM.error) { errorMessage ->
+            Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
         }
 
         viewLifecycleOwner.observe(popularMoviesVM.insertFavouriteMovie) {
@@ -98,4 +77,12 @@ class PopularMoviesFragment : Fragment() {
             popularMovieResUI?.isFavourite = false
         }
     }
+
+    override fun getVM(): DashboardVM = dashboardVM
+
+    override fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): FragmentPopularMoviesBinding =
+        FragmentPopularMoviesBinding.inflate(inflater, container, false)
 }

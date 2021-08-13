@@ -35,6 +35,7 @@ class DashboardVM @Inject constructor(
     val topRatedMovies: LiveData<List<TopRatedMovieResUI>> = _topRatedMovies
 
     fun getMovies() {
+        _loading.value = true
         viewModelScope.launch(coroutineThread.background()) {
             when (val result = moviesUseCase.getMovies()) {
                 is Result.Success -> {
@@ -43,6 +44,8 @@ class DashboardVM @Inject constructor(
                 }
                 is Result.Error -> _error.postValue(result.error.localizedMessage)
             }
+
+            _loading.postValue(false)
         }
     }
 }
