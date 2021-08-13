@@ -1,4 +1,4 @@
-package com.franzandel.moviesubmission.di
+package com.franzandel.moviesubmission.di.app
 
 import com.franzandel.moviesubmission.core.external.coroutine.CoroutineThread
 import com.franzandel.moviesubmission.core.external.coroutine.CoroutineThreadImpl

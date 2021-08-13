@@ -1,4 +1,4 @@
-package com.franzandel.moviesubmission.di
+package com.franzandel.moviesubmission.di.dashboard
 
 import androidx.lifecycle.ViewModel
 import com.franzandel.moviesubmission.core.presentation.vm.ViewModelKey

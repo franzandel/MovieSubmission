@@ -1,4 +1,4 @@
-package com.franzandel.moviesubmission.di
+package com.franzandel.moviesubmission.di.app
 
 import android.content.Context
 import android.net.Uri

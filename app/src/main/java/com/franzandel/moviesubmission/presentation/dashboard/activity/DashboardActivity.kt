@@ -28,7 +28,10 @@ class DashboardActivity : AppCompatActivity() {
         viewPager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = binding.tabs
         tabs.setupWithViewPager(viewPager)
+    }
 
+    override fun onResume() {
+        super.onResume()
         viewModel.getMovies()
     }
 }

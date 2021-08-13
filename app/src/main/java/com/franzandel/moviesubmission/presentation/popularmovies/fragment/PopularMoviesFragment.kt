@@ -15,6 +15,7 @@ import com.franzandel.moviesubmission.databinding.FragmentPopularMoviesBinding
 import com.franzandel.moviesubmission.presentation.dashboard.vm.DashboardVM
 import com.franzandel.moviesubmission.presentation.navigation.MoviesNavigation
 import com.franzandel.moviesubmission.presentation.popularmovies.adapter.PopularMoviesAdapter
+import com.franzandel.moviesubmission.presentation.popularmovies.model.PopularMovieResUI
 import com.franzandel.moviesubmission.presentation.popularmovies.vm.PopularMoviesVM
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -32,18 +33,20 @@ class PopularMoviesFragment : Fragment() {
     private var _binding: FragmentPopularMoviesBinding? = null
     private val binding get() = _binding!!
 
+    private var popularMovieResUI: PopularMovieResUI? = null
     private var ivFavourite: ImageView? = null
 
     private val adapter by lazy {
-        PopularMoviesAdapter({ popularMoviesResUI, ivFavourite ->
+        PopularMoviesAdapter({ popularMovieResUI, ivFavourite ->
             this.ivFavourite = ivFavourite
+            this.popularMovieResUI = popularMovieResUI
 
             if (ivFavourite.isSelected)
-                popularMoviesVM.deleteFavouriteMovie(popularMoviesResUI)
+                popularMoviesVM.deleteFavouriteMovie(popularMovieResUI)
             else
-                popularMoviesVM.insertFavouriteMovie(popularMoviesResUI)
+                popularMoviesVM.insertFavouriteMovie(popularMovieResUI)
         }, { popularMovieResUI ->
-            navigation.goToDetail(popularMovieResUI)
+            navigation.goToDetailPopularMovie(popularMovieResUI)
         })
     }
 
@@ -87,10 +90,12 @@ class PopularMoviesFragment : Fragment() {
 
         viewLifecycleOwner.observe(popularMoviesVM.insertFavouriteMovie) {
             ivFavourite?.isSelected = true
+            popularMovieResUI?.isFavourite = true
         }
 
         viewLifecycleOwner.observe(popularMoviesVM.deleteFavouriteMovie) {
             ivFavourite?.isSelected = false
+            popularMovieResUI?.isFavourite = false
         }
     }
 }

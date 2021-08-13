@@ -1,4 +1,4 @@
-package com.franzandel.moviesubmission.di
+package com.franzandel.moviesubmission.di.popularmovies
 
 import androidx.lifecycle.ViewModel
 import com.franzandel.moviesubmission.core.mapper.BaseMapper
@@ -21,7 +21,7 @@ import dagger.multibindings.IntoMap
 
 @Module
 @InstallIn(ViewModelComponent::class)
-abstract class PopularMoviesModule {
+abstract class PopularMoviesAbstractModule {
 
     @Binds
     @IntoMap

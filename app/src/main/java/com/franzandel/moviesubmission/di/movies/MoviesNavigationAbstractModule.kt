@@ -1,4 +1,4 @@
-package com.franzandel.moviesubmission.di
+package com.franzandel.moviesubmission.di.movies
 
 import com.franzandel.moviesubmission.presentation.navigation.MoviesNavigation
 import com.franzandel.moviesubmission.presentation.navigation.MoviesNavigationImpl

@@ -8,5 +8,5 @@ import com.franzandel.moviesubmission.presentation.popularmovies.model.PopularMo
  */
 
 interface MoviesNavigation {
-    fun goToDetail(popularMovieResUI: PopularMovieResUI? = null)
+    fun goToDetailPopularMovie(popularMovieResUI: PopularMovieResUI)
 }
