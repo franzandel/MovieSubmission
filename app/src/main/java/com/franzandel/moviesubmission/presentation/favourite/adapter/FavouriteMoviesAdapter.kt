@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import com.franzandel.moviesubmission.core.presentation.adapter.BaseAdapter
 import com.franzandel.moviesubmission.databinding.ItemFavouriteMoviesBinding
 import com.franzandel.moviesubmission.presentation.favourite.diffcallback.FavouriteMoviesDiffCallback
+import com.franzandel.moviesubmission.presentation.favourite.model.FavouriteMovieResUI
 import com.franzandel.moviesubmission.presentation.favourite.vh.FavouriteMoviesVH
 
 /**
@@ -12,8 +13,11 @@ import com.franzandel.moviesubmission.presentation.favourite.vh.FavouriteMoviesV
  * Android Engineer
  */
 
-class FavouriteMoviesAdapter :
-    BaseAdapter<String, FavouriteMoviesVH, ItemFavouriteMoviesBinding>(FavouriteMoviesDiffCallback()) {
+class FavouriteMoviesAdapter(
+    private val detailClicked: (favouriteMovieResUI: FavouriteMovieResUI) -> Unit
+) : BaseAdapter<FavouriteMovieResUI, FavouriteMoviesVH, ItemFavouriteMoviesBinding>(
+    FavouriteMoviesDiffCallback()
+) {
 
     override fun getViewBinding(parent: ViewGroup): ItemFavouriteMoviesBinding =
         ItemFavouriteMoviesBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -22,6 +26,6 @@ class FavouriteMoviesAdapter :
         FavouriteMoviesVH(viewBinding)
 
     override fun onBindViewHolder(holder: FavouriteMoviesVH, position: Int) {
-        holder.bind(currentList[position])
+        holder.bind(currentList[position], detailClicked)
     }
 }

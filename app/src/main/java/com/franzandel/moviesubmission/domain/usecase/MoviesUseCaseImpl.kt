@@ -36,4 +36,7 @@ class MoviesUseCaseImpl @Inject constructor(private val repository: MoviesReposi
 
         return moviesGenresRes
     }
+
+    override suspend fun getFavouriteMovies(): Result<List<FavouriteMovieRes>> =
+        repository.getFavouriteMovies()
 }
