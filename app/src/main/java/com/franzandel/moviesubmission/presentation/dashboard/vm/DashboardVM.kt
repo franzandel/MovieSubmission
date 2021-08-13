@@ -7,8 +7,10 @@ import com.franzandel.moviesubmission.core.data.wrapper.Result
 import com.franzandel.moviesubmission.core.external.coroutine.CoroutineThread
 import com.franzandel.moviesubmission.core.mapper.BaseMapper
 import com.franzandel.moviesubmission.core.presentation.vm.BaseViewModel
+import com.franzandel.moviesubmission.domain.model.FavouriteMovieRes
 import com.franzandel.moviesubmission.domain.model.MovieGenreRes
 import com.franzandel.moviesubmission.domain.usecase.MoviesUseCase
+import com.franzandel.moviesubmission.presentation.favouritemovies.model.FavouriteMovieResUI
 import com.franzandel.moviesubmission.presentation.popularmovies.model.PopularMovieResUI
 import com.franzandel.moviesubmission.presentation.topratedmovies.model.TopRatedMovieResUI
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -25,7 +27,8 @@ class DashboardVM @Inject constructor(
     private val moviesUseCase: MoviesUseCase,
     private val coroutineThread: CoroutineThread,
     private val popularMovieResUIMapper: BaseMapper<List<MovieGenreRes>, List<PopularMovieResUI>>,
-    private val topRatedMovieResUIMapper: BaseMapper<List<MovieGenreRes>, List<TopRatedMovieResUI>>
+    private val topRatedMovieResUIMapper: BaseMapper<List<MovieGenreRes>, List<TopRatedMovieResUI>>,
+    private val favouriteMovieResUIMapper: BaseMapper<List<FavouriteMovieRes>, List<FavouriteMovieResUI>>
 ) : BaseViewModel() {
 
     private lateinit var popularMoviesResUI: List<PopularMovieResUI>
@@ -71,6 +74,21 @@ class DashboardVM @Inject constructor(
             }?.isFavourite = isFavourite
 
             _topRatedMovies.postValue(topRatedMoviesResUI)
+        }
+    }
+
+    private val _favouriteMovies = MutableLiveData<List<FavouriteMovieResUI>>()
+    val favouriteMovies: LiveData<List<FavouriteMovieResUI>> = _favouriteMovies
+
+    fun getFavouriteMovies() {
+        viewModelScope.launch(coroutineThread.background()) {
+            when (val result = moviesUseCase.getFavouriteMovies()) {
+                is Result.Success -> {
+                    val favouriteMoviesResUI = favouriteMovieResUIMapper.map(result.data)
+                    _favouriteMovies.postValue(favouriteMoviesResUI)
+                }
+                is Result.Error -> _error.postValue(result.error.localizedMessage)
+            }
         }
     }
 }

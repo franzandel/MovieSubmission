@@ -1,6 +1,7 @@
 package com.franzandel.moviesubmission.presentation.dashboard.activity
 
 import androidx.activity.viewModels
+import com.franzandel.moviesubmission.core.external.extension.observe
 import com.franzandel.moviesubmission.core.presentation.activity.BaseActivityVM
 import com.franzandel.moviesubmission.databinding.ActivityDashboardBinding
 import com.franzandel.moviesubmission.presentation.dashboard.adapter.TabPagerAdapter
@@ -13,15 +14,35 @@ class DashboardActivity : BaseActivityVM<DashboardVM, ActivityDashboardBinding>(
     private val viewModel: DashboardVM by viewModels()
 
     override fun onActivityCreated() {
+        setupTabLayout()
+        setupObserver()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getMovies()
+        viewModel.getFavouriteMovies()
+    }
+
+    private fun setupTabLayout() {
         val sectionsPagerAdapter = TabPagerAdapter(this, supportFragmentManager)
         val viewPager = binding.viewPager
         viewPager.adapter = sectionsPagerAdapter
         binding.tabs.setupWithViewPager(viewPager)
     }
 
-    override fun onResume() {
-        super.onResume()
-        viewModel.getMovies()
+    private fun setupObserver() {
+        observe(viewModel.favouriteMovies) { favouriteMoviesResUI ->
+            updateFavouriteTabCount(favouriteMoviesResUI.size)
+        }
+    }
+
+    private fun updateFavouriteTabCount(count: Int) {
+        val favouriteTab = binding.tabs.getTabAt(2)
+        if (count == 0)
+            favouriteTab?.removeBadge()
+        else
+            favouriteTab?.orCreateBadge?.number = count
     }
 
     override fun getVM(): DashboardVM = viewModel

@@ -9,20 +9,20 @@ import com.franzandel.moviesubmission.core.external.extension.observe
 import com.franzandel.moviesubmission.core.presentation.fragment.BaseFragmentVM
 import com.franzandel.moviesubmission.data.consts.RecyclerViewConst
 import com.franzandel.moviesubmission.databinding.FragmentFavouriteMoviesBinding
+import com.franzandel.moviesubmission.presentation.dashboard.vm.DashboardVM
 import com.franzandel.moviesubmission.presentation.favouritemovies.adapter.FavouriteMoviesAdapter
-import com.franzandel.moviesubmission.presentation.favouritemovies.vm.FavouriteMoviesVM
 import com.franzandel.moviesubmission.presentation.navigation.MoviesNavigation
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class FavouriteMoviesFragment :
-    BaseFragmentVM<FavouriteMoviesVM, FragmentFavouriteMoviesBinding>() {
+    BaseFragmentVM<DashboardVM, FragmentFavouriteMoviesBinding>() {
 
     @Inject
     lateinit var navigation: MoviesNavigation
 
-    private val viewModel: FavouriteMoviesVM by activityViewModels()
+    private val viewModel: DashboardVM by activityViewModels()
 
     private val adapter by lazy {
         FavouriteMoviesAdapter { favouriteMovieResUI ->
@@ -33,10 +33,6 @@ class FavouriteMoviesFragment :
     override fun onFragmentCreateView() {
         setupRV()
         setupObserver()
-    }
-
-    override fun onResume() {
-        super.onResume()
         viewModel.getFavouriteMovies()
     }
 
@@ -59,7 +55,7 @@ class FavouriteMoviesFragment :
         }
     }
 
-    override fun getVM(): FavouriteMoviesVM = viewModel
+    override fun getVM(): DashboardVM = viewModel
 
     override fun getViewBinding(
         inflater: LayoutInflater,

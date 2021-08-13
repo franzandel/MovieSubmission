@@ -75,6 +75,7 @@ class PopularMoviesFragment : BaseFragmentVM<DashboardVM, FragmentPopularMoviesB
             popularMovieResUI?.let { popularMovieResUI ->
                 popularMovieResUI.isFavourite = isFavourite
                 dashboardVM.updateTopRatedMovies(popularMovieResUI.id, isFavourite)
+                dashboardVM.getFavouriteMovies()
             }
         }
 
@@ -85,6 +86,7 @@ class PopularMoviesFragment : BaseFragmentVM<DashboardVM, FragmentPopularMoviesB
             popularMovieResUI?.let { popularMovieResUI ->
                 popularMovieResUI.isFavourite = isFavourite
                 dashboardVM.updateTopRatedMovies(popularMovieResUI.id, isFavourite)
+                dashboardVM.getFavouriteMovies()
             }
         }
     }
