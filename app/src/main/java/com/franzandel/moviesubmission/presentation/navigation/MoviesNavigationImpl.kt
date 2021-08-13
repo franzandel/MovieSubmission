@@ -4,7 +4,9 @@ import android.content.Context
 import com.franzandel.moviesubmission.core.external.extension.goTo
 import com.franzandel.moviesubmission.data.consts.BundleConst
 import com.franzandel.moviesubmission.presentation.detailpopularmovie.activity.DetailPopularMovieActivity
+import com.franzandel.moviesubmission.presentation.detailtopratedmovie.activity.DetailTopRatedMovieActivity
 import com.franzandel.moviesubmission.presentation.popularmovies.model.PopularMovieResUI
+import com.franzandel.moviesubmission.presentation.topratedmovies.model.TopRatedMovieResUI
 import dagger.hilt.android.qualifiers.ActivityContext
 import javax.inject.Inject
 
@@ -14,6 +16,12 @@ class MoviesNavigationImpl @Inject constructor(@ActivityContext private val cont
     override fun goToDetailPopularMovie(popularMovieResUI: PopularMovieResUI) {
         context.goTo(DetailPopularMovieActivity::class.java) {
             putExtra(BundleConst.EXTRA_POPULAR_MOVIE_RES_UI, popularMovieResUI)
+        }
+    }
+
+    override fun goToDetailTopRatedMovie(topRatedMovieResUI: TopRatedMovieResUI) {
+        context.goTo(DetailTopRatedMovieActivity::class.java) {
+            putExtra(BundleConst.EXTRA_TOP_RATED_MOVIE_RES_UI, topRatedMovieResUI)
         }
     }
 }
