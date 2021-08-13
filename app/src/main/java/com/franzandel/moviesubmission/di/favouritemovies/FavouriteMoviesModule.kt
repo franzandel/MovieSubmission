@@ -1,4 +1,4 @@
-package com.franzandel.moviesubmission.di.favourite
+package com.franzandel.moviesubmission.di.favouritemovies
 
 import com.franzandel.moviesubmission.core.mapper.BaseMapper
 import com.franzandel.moviesubmission.domain.model.FavouriteMovieRes
