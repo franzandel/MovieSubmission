@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MovieSubmission</string>
+    <string name="app_name">Movi</string>
     <string name="popular_movies_tab_title">Popular</string>
     <string name="top_rated_movies_tab_title">Top Rated</string>
     <string name="favourite_movies_tab_title">Favourite</string>
@@ -7,4 +7,7 @@
     <string name="menu_share">Share</string>
 
     <string name="detail_overview_title">Overview</string>
+
+    <string name="share_message_title">Let\'s share this apps to your friends!</string>
+    <string name="share_message_description">Know more info about %s at <b>Movi</b> in Google Play Store</string>
 </resources>

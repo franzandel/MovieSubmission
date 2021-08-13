@@ -24,5 +24,5 @@ data class PopularMovieResUI(
     val video: Boolean,
     val voteAverage: Double,
     val voteCount: Int,
-    val isFavourite: Boolean
+    var isFavourite: Boolean
 ) : Parcelable
