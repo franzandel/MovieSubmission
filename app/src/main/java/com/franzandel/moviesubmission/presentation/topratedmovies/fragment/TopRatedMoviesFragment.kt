@@ -41,7 +41,7 @@ class TopRatedMoviesFragment : BaseFragmentVM<DashboardVM, FragmentTopRatedMovie
             else
                 topRatedMoviesVM.insertFavouriteMovie(topRatedMovieResUI)
         }, { topRatedMovieResUI ->
-//            navigation.goToDetailPopularMovie(topRatedMovieResUI)
+            navigation.goToDetailTopRatedMovie(topRatedMovieResUI)
         })
     }
 

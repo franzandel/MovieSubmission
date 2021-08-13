@@ -1,6 +1,7 @@
 package com.franzandel.moviesubmission.presentation.navigation
 
 import com.franzandel.moviesubmission.presentation.popularmovies.model.PopularMovieResUI
+import com.franzandel.moviesubmission.presentation.topratedmovies.model.TopRatedMovieResUI
 
 /**
  * Created by Franz Andel on 12/08/21.
@@ -9,4 +10,5 @@ import com.franzandel.moviesubmission.presentation.popularmovies.model.PopularMo
 
 interface MoviesNavigation {
     fun goToDetailPopularMovie(popularMovieResUI: PopularMovieResUI)
+    fun goToDetailTopRatedMovie(topRatedMovieResUI: TopRatedMovieResUI)
 }

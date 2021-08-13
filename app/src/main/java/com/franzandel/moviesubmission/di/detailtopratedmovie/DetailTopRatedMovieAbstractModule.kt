@@ -1,8 +1,8 @@
-package com.franzandel.moviesubmission.di.detailpopularmovie
+package com.franzandel.moviesubmission.di.detailtopratedmovie
 
 import androidx.lifecycle.ViewModel
 import com.franzandel.moviesubmission.core.presentation.vm.ViewModelKey
-import com.franzandel.moviesubmission.presentation.detailpopularmovie.vm.DetailPopularMovieVM
+import com.franzandel.moviesubmission.presentation.detailtopratedmovie.vm.DetailTopRatedMovieVM
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -16,10 +16,10 @@ import dagger.multibindings.IntoMap
 
 @Module
 @InstallIn(ViewModelComponent::class)
-abstract class DetailPopularMovieAbstractModule {
+abstract class DetailTopRatedMovieAbstractModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(DetailPopularMovieVM::class)
-    abstract fun provideDetailPopularMovieVM(detailPopularMovieVM: DetailPopularMovieVM): ViewModel
+    @ViewModelKey(DetailTopRatedMovieVM::class)
+    abstract fun provideDetailTopRatedMovieVM(detailTopRatedMovieVM: DetailTopRatedMovieVM): ViewModel
 }
