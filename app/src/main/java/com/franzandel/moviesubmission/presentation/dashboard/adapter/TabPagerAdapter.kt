@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.franzandel.moviesubmission.R
-import com.franzandel.moviesubmission.presentation.favourite.fragment.FavouriteMoviesFragment
+import com.franzandel.moviesubmission.presentation.favouritemovies.fragment.FavouriteMoviesFragment
 import com.franzandel.moviesubmission.presentation.popularmovies.fragment.PopularMoviesFragment
 import com.franzandel.moviesubmission.presentation.topratedmovies.fragment.TopRatedMoviesFragment
 

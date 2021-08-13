@@ -1,4 +1,4 @@
-package com.franzandel.moviesubmission.presentation.favourite.fragment
+package com.franzandel.moviesubmission.presentation.favouritemovies.fragment
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,8 +9,8 @@ import com.franzandel.moviesubmission.core.external.extension.observe
 import com.franzandel.moviesubmission.core.presentation.fragment.BaseFragmentVM
 import com.franzandel.moviesubmission.data.consts.RecyclerViewConst
 import com.franzandel.moviesubmission.databinding.FragmentFavouriteMoviesBinding
-import com.franzandel.moviesubmission.presentation.favourite.adapter.FavouriteMoviesAdapter
-import com.franzandel.moviesubmission.presentation.favourite.vm.FavouriteMoviesVM
+import com.franzandel.moviesubmission.presentation.favouritemovies.adapter.FavouriteMoviesAdapter
+import com.franzandel.moviesubmission.presentation.favouritemovies.vm.FavouriteMoviesVM
 import com.franzandel.moviesubmission.presentation.navigation.MoviesNavigation
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -26,7 +26,7 @@ class FavouriteMoviesFragment :
 
     private val adapter by lazy {
         FavouriteMoviesAdapter { favouriteMovieResUI ->
-//            navigation.goToDetailPopularMovie(popularMovieResUI)
+            navigation.goToDetailFavouriteMovie(favouriteMovieResUI)
         }
     }
 

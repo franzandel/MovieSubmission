@@ -1,12 +1,12 @@
-package com.franzandel.moviesubmission.presentation.favourite.adapter
+package com.franzandel.moviesubmission.presentation.favouritemovies.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.franzandel.moviesubmission.core.presentation.adapter.BaseAdapter
 import com.franzandel.moviesubmission.databinding.ItemFavouriteMoviesBinding
-import com.franzandel.moviesubmission.presentation.favourite.diffcallback.FavouriteMoviesDiffCallback
-import com.franzandel.moviesubmission.presentation.favourite.model.FavouriteMovieResUI
-import com.franzandel.moviesubmission.presentation.favourite.vh.FavouriteMoviesVH
+import com.franzandel.moviesubmission.presentation.favouritemovies.diffcallback.FavouriteMoviesDiffCallback
+import com.franzandel.moviesubmission.presentation.favouritemovies.model.FavouriteMovieResUI
+import com.franzandel.moviesubmission.presentation.favouritemovies.vh.FavouriteMoviesVH
 
 /**
  * Created by Franz Andel on 10/08/21.

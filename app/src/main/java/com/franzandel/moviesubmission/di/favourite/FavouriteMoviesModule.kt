@@ -2,8 +2,8 @@ package com.franzandel.moviesubmission.di.favourite
 
 import com.franzandel.moviesubmission.core.mapper.BaseMapper
 import com.franzandel.moviesubmission.domain.model.FavouriteMovieRes
-import com.franzandel.moviesubmission.presentation.favourite.mapper.FavouriteMovieResUIMapper
-import com.franzandel.moviesubmission.presentation.favourite.model.FavouriteMovieResUI
+import com.franzandel.moviesubmission.presentation.favouritemovies.mapper.FavouriteMovieResUIMapper
+import com.franzandel.moviesubmission.presentation.favouritemovies.model.FavouriteMovieResUI
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

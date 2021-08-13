@@ -2,7 +2,7 @@ package com.franzandel.moviesubmission.di.favourite
 
 import androidx.lifecycle.ViewModel
 import com.franzandel.moviesubmission.core.presentation.vm.ViewModelKey
-import com.franzandel.moviesubmission.presentation.favourite.vm.FavouriteMoviesVM
+import com.franzandel.moviesubmission.presentation.favouritemovies.vm.FavouriteMoviesVM
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

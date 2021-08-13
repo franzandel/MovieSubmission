@@ -8,4 +8,5 @@ package com.franzandel.moviesubmission.data.consts
 object BundleConst {
     const val EXTRA_POPULAR_MOVIE_RES_UI = "extra_popular_movie_res_ui"
     const val EXTRA_TOP_RATED_MOVIE_RES_UI = "extra_top_rated_movie_res_ui"
+    const val EXTRA_FAVOURITE_MOVIE_RES_UI = "extra_favourite_movie_res_ui"
 }

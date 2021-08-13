@@ -1,4 +1,4 @@
-package com.franzandel.moviesubmission.presentation.favourite.vm
+package com.franzandel.moviesubmission.presentation.favouritemovies.vm
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -9,7 +9,7 @@ import com.franzandel.moviesubmission.core.mapper.BaseMapper
 import com.franzandel.moviesubmission.core.presentation.vm.BaseViewModel
 import com.franzandel.moviesubmission.domain.model.FavouriteMovieRes
 import com.franzandel.moviesubmission.domain.usecase.MoviesUseCase
-import com.franzandel.moviesubmission.presentation.favourite.model.FavouriteMovieResUI
+import com.franzandel.moviesubmission.presentation.favouritemovies.model.FavouriteMovieResUI
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
