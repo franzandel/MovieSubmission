@@ -1,47 +1,69 @@
 package com.franzandel.moviesubmission.presentation.favourite.fragment
 
-import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
+import com.franzandel.moviesubmission.core.external.extension.observe
+import com.franzandel.moviesubmission.core.presentation.fragment.BaseFragmentVM
 import com.franzandel.moviesubmission.data.consts.RecyclerViewConst
 import com.franzandel.moviesubmission.databinding.FragmentFavouriteMoviesBinding
 import com.franzandel.moviesubmission.presentation.favourite.adapter.FavouriteMoviesAdapter
+import com.franzandel.moviesubmission.presentation.favourite.vm.FavouriteMoviesVM
+import com.franzandel.moviesubmission.presentation.navigation.MoviesNavigation
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-class FavouriteMoviesFragment : Fragment() {
+@AndroidEntryPoint
+class FavouriteMoviesFragment :
+    BaseFragmentVM<FavouriteMoviesVM, FragmentFavouriteMoviesBinding>() {
 
-    private var _binding: FragmentFavouriteMoviesBinding? = null
-    private val binding get() = _binding!!
+    @Inject
+    lateinit var navigation: MoviesNavigation
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    private val viewModel: FavouriteMoviesVM by activityViewModels()
+
+    private val adapter by lazy {
+        FavouriteMoviesAdapter { favouriteMovieResUI ->
+//            navigation.goToDetailPopularMovie(popularMovieResUI)
+        }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentFavouriteMoviesBinding.inflate(inflater, container, false)
-        val root = binding.root
-
+    override fun onFragmentCreateView() {
         setupRV()
-        return root
+        setupObserver()
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    override fun onResume() {
+        super.onResume()
+        viewModel.getFavouriteMovies()
     }
 
     private fun setupRV() {
-        val adapter = FavouriteMoviesAdapter()
-        binding.rvFavouriteMovies.layoutManager = GridLayoutManager(
+        viewBinding.rvFavouriteMovies.layoutManager = GridLayoutManager(
             requireContext(),
             RecyclerViewConst.GRID_SPAN_COUNT
         )
-        binding.rvFavouriteMovies.adapter = adapter
-        adapter.submitList(listOf("", "", "", ""))
+        viewBinding.rvFavouriteMovies.adapter = adapter
     }
+
+    private fun setupObserver() {
+        viewLifecycleOwner.observe(viewModel.favouriteMovies) { favouriteMovieResUI ->
+            adapter.submitList(favouriteMovieResUI)
+            adapter.notifyDataSetChanged()
+        }
+
+        viewLifecycleOwner.observe(viewModel.error) { errorMessage ->
+            Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    override fun getVM(): FavouriteMoviesVM = viewModel
+
+    override fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): FragmentFavouriteMoviesBinding =
+        FragmentFavouriteMoviesBinding.inflate(inflater, container, false)
 }
