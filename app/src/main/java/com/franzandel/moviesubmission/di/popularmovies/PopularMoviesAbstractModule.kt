@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.franzandel.moviesubmission.core.mapper.BaseMapper
 import com.franzandel.moviesubmission.core.presentation.vm.ViewModelKey
 import com.franzandel.moviesubmission.domain.model.FavouriteMovieReq
-import com.franzandel.moviesubmission.presentation.popularmovies.mapper.MovieRequestMapper
+import com.franzandel.moviesubmission.presentation.popularmovies.mapper.FavouriteMovieReqMapper
 import com.franzandel.moviesubmission.presentation.popularmovies.model.PopularMovieResUI
 import com.franzandel.moviesubmission.presentation.popularmovies.vm.PopularMoviesVM
 import dagger.Binds
@@ -30,5 +30,5 @@ abstract class PopularMoviesAbstractModule {
 
     @Binds
     @ViewModelScoped
-    abstract fun provideMovieRequestMapper(movieRequestMapper: MovieRequestMapper): BaseMapper<PopularMovieResUI, FavouriteMovieReq>
+    abstract fun provideMovieRequestMapper(favouriteMovieReqMapper: FavouriteMovieReqMapper): BaseMapper<PopularMovieResUI, FavouriteMovieReq>
 }

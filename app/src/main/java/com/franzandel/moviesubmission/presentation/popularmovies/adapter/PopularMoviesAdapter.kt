@@ -21,15 +21,11 @@ class PopularMoviesAdapter(
     PopularMoviesDiffCallback()
 ) {
 
-    private lateinit var viewHolder: PopularMoviesVH
-
     override fun getViewBinding(parent: ViewGroup): ItemPopularMoviesBinding =
         ItemPopularMoviesBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
-    override fun getViewHolder(viewBinding: ItemPopularMoviesBinding): PopularMoviesVH {
-        viewHolder = PopularMoviesVH(viewBinding)
-        return viewHolder
-    }
+    override fun getViewHolder(viewBinding: ItemPopularMoviesBinding): PopularMoviesVH =
+        PopularMoviesVH(viewBinding)
 
     override fun onBindViewHolder(holder: PopularMoviesVH, position: Int) {
         holder.bind(currentList[position], favouriteClicked, detailClicked)

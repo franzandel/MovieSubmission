@@ -28,6 +28,9 @@ class DashboardVM @Inject constructor(
     private val topRatedMovieResUIMapper: BaseMapper<List<MovieGenreRes>, List<TopRatedMovieResUI>>
 ) : BaseViewModel() {
 
+    private lateinit var popularMoviesResUI: List<PopularMovieResUI>
+    private lateinit var topRatedMoviesResUI: List<TopRatedMovieResUI>
+
     private val _popularMovies = MutableLiveData<List<PopularMovieResUI>>()
     val popularMovies: LiveData<List<PopularMovieResUI>> = _popularMovies
 
@@ -39,13 +42,35 @@ class DashboardVM @Inject constructor(
         viewModelScope.launch(coroutineThread.background()) {
             when (val result = moviesUseCase.getMovies()) {
                 is Result.Success -> {
-                    _popularMovies.postValue(popularMovieResUIMapper.map(result.data))
-                    _topRatedMovies.postValue(topRatedMovieResUIMapper.map(result.data))
+                    popularMoviesResUI = popularMovieResUIMapper.map(result.data)
+                    topRatedMoviesResUI = topRatedMovieResUIMapper.map(result.data)
+                    _popularMovies.postValue(popularMoviesResUI)
+                    _topRatedMovies.postValue(topRatedMoviesResUI)
                 }
                 is Result.Error -> _error.postValue(result.error.localizedMessage)
             }
 
             _loading.postValue(false)
+        }
+    }
+
+    fun updatePopularMovies(id: Int, isFavourite: Boolean) {
+        viewModelScope.launch(coroutineThread.default()) {
+            popularMoviesResUI.find { popularMovieResUI ->
+                popularMovieResUI.id == id
+            }?.isFavourite = isFavourite
+
+            _popularMovies.postValue(popularMoviesResUI)
+        }
+    }
+
+    fun updateTopRatedMovies(id: Int, isFavourite: Boolean) {
+        viewModelScope.launch(coroutineThread.default()) {
+            topRatedMoviesResUI.find { topRatedMovieResUI ->
+                topRatedMovieResUI.id == id
+            }?.isFavourite = isFavourite
+
+            _topRatedMovies.postValue(topRatedMoviesResUI)
         }
     }
 }

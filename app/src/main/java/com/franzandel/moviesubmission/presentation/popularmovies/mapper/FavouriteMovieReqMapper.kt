@@ -10,7 +10,7 @@ import javax.inject.Inject
  * Android Engineer
  */
 
-class MovieRequestMapper @Inject constructor() :
+class FavouriteMovieReqMapper @Inject constructor() :
     BaseMapper<PopularMovieResUI, FavouriteMovieReq>() {
 
     override fun map(dataModel: PopularMovieResUI): FavouriteMovieReq =
