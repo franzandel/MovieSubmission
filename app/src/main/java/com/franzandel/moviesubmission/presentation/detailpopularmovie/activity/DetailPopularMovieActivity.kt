@@ -1,12 +1,11 @@
 package com.franzandel.moviesubmission.presentation.detailpopularmovie.activity
 
-import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.franzandel.moviesubmission.BuildConfig
 import com.franzandel.moviesubmission.R
 import com.franzandel.moviesubmission.core.external.extension.*
+import com.franzandel.moviesubmission.core.presentation.activity.BaseActivityVM
 import com.franzandel.moviesubmission.data.consts.BundleConst
 import com.franzandel.moviesubmission.databinding.ActivityDetailPopularMovieBinding
 import com.franzandel.moviesubmission.presentation.detailpopularmovie.vm.DetailPopularMovieVM
@@ -15,21 +14,16 @@ import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
 @AndroidEntryPoint
-class DetailPopularMovieActivity : AppCompatActivity() {
+class DetailPopularMovieActivity :
+    BaseActivityVM<DetailPopularMovieVM, ActivityDetailPopularMovieBinding>() {
 
     private val viewModel: DetailPopularMovieVM by viewModels()
-
-    private lateinit var binding: ActivityDetailPopularMovieBinding
 
     private val popularMovieResUI by lazy {
         intent.getParcelableExtra<PopularMovieResUI>(BundleConst.EXTRA_POPULAR_MOVIE_RES_UI)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityDetailPopularMovieBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
+    override fun onActivityCreated() {
         setupUI()
         setupListeners()
         setupObservers()
@@ -101,4 +95,9 @@ class DetailPopularMovieActivity : AppCompatActivity() {
             popularMovieResUI?.isFavourite = false
         }
     }
+
+    override fun getVM(): DetailPopularMovieVM = viewModel
+
+    override fun getViewBinding(): ActivityDetailPopularMovieBinding =
+        ActivityDetailPopularMovieBinding.inflate(layoutInflater)
 }
