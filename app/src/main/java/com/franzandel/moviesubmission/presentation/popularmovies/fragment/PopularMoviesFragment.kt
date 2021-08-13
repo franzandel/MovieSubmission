@@ -61,6 +61,7 @@ class PopularMoviesFragment : BaseFragmentVM<DashboardVM, FragmentPopularMoviesB
     private fun setupObserver() {
         viewLifecycleOwner.observe(dashboardVM.popularMovies) { popularMoviesResUI ->
             adapter.submitList(popularMoviesResUI)
+            adapter.notifyDataSetChanged()
         }
 
         viewLifecycleOwner.observe(dashboardVM.error) { errorMessage ->
@@ -68,13 +69,23 @@ class PopularMoviesFragment : BaseFragmentVM<DashboardVM, FragmentPopularMoviesB
         }
 
         viewLifecycleOwner.observe(popularMoviesVM.insertFavouriteMovie) {
-            ivFavourite?.isSelected = true
-            popularMovieResUI?.isFavourite = true
+            val isFavourite = true
+            ivFavourite?.isSelected = isFavourite
+
+            popularMovieResUI?.let { popularMovieResUI ->
+                popularMovieResUI.isFavourite = isFavourite
+                dashboardVM.updateTopRatedMovies(popularMovieResUI.id, isFavourite)
+            }
         }
 
         viewLifecycleOwner.observe(popularMoviesVM.deleteFavouriteMovie) {
-            ivFavourite?.isSelected = false
-            popularMovieResUI?.isFavourite = false
+            val isFavourite = false
+            ivFavourite?.isSelected = isFavourite
+
+            popularMovieResUI?.let { popularMovieResUI ->
+                popularMovieResUI.isFavourite = isFavourite
+                dashboardVM.updateTopRatedMovies(popularMovieResUI.id, isFavourite)
+            }
         }
     }
 
