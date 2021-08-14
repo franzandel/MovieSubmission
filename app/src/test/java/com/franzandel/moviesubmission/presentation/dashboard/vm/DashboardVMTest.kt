@@ -68,7 +68,7 @@ class DashboardVMTest {
     @Test
     fun `get movies success`() {
         runBlockingTest {
-            val moviesGenresRes = RoomUtils.getMoviesGenresRes()
+            val moviesGenresRes = RetrofitUtils.getMoviesGenresRes()
 
             coEvery { popularMovieResUIMapper.map(moviesGenresRes) } returns RoomUtils.getPopularMoviesResUI()
             val popularMoviesResUI = popularMovieResUIMapper.map(moviesGenresRes)
@@ -171,7 +171,7 @@ class DashboardVMTest {
         runBlockingTest {
             val fakeId = 1
             val fakeIsFavourite = true
-            val moviesGenresRes = RoomUtils.getMoviesGenresRes()
+            val moviesGenresRes = RetrofitUtils.getMoviesGenresRes()
 
             val popularMoviesResUI = popularMovieResUIMapper.map(moviesGenresRes)
             popularMoviesResUI.find {
@@ -209,7 +209,7 @@ class DashboardVMTest {
         runBlockingTest {
             val fakeId = 3
             val fakeIsFavourite = true
-            val moviesGenresRes = RoomUtils.getMoviesGenresRes()
+            val moviesGenresRes = RetrofitUtils.getMoviesGenresRes()
 
             val popularMoviesResUI = popularMovieResUIMapper.map(moviesGenresRes)
             popularMoviesResUI.find {
@@ -247,7 +247,7 @@ class DashboardVMTest {
         runBlockingTest {
             val fakeId = 1
             val fakeIsFavourite = true
-            val moviesGenresRes = RoomUtils.getMoviesGenresRes()
+            val moviesGenresRes = RetrofitUtils.getMoviesGenresRes()
 
             val topRatedMoviesResUI = topRatedMovieResUIMapper.map(moviesGenresRes)
             topRatedMoviesResUI.find {
@@ -285,7 +285,7 @@ class DashboardVMTest {
         runBlockingTest {
             val fakeId = 3
             val fakeIsFavourite = true
-            val moviesGenresRes = RoomUtils.getMoviesGenresRes()
+            val moviesGenresRes = RetrofitUtils.getMoviesGenresRes()
 
             val topRatedMoviesResUI = topRatedMovieResUIMapper.map(moviesGenresRes)
             topRatedMoviesResUI.find {
