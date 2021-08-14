@@ -1,8 +1,19 @@
 package com.franzandel.moviesubmission.utils
 
+import com.franzandel.moviesubmission.core.external.extension.convertStringToMap
+import com.franzandel.moviesubmission.core.external.extension.toDataClass
+import com.franzandel.moviesubmission.core.mapper.RetrofitResMapper
+import com.franzandel.moviesubmission.data.remote.mapper.RetrofitGenresResMapper
+import com.franzandel.moviesubmission.data.remote.mapper.RetrofitMoviesResMapper
+import com.franzandel.moviesubmission.data.remote.model.GenresResDTO
+import com.franzandel.moviesubmission.data.remote.model.MoviesResDTO
 import com.franzandel.moviesubmission.domain.model.GenreRes
 import com.franzandel.moviesubmission.domain.model.MovieGenreRes
 import com.franzandel.moviesubmission.domain.model.MovieRes
+import com.google.gson.Gson
+import java.io.BufferedReader
+import java.io.InputStreamReader
+import java.io.StringWriter
 
 /**
  * Created by Franz Andel on 14/08/21.
@@ -124,4 +135,41 @@ object RetrofitUtils {
                 isFavourite = false
             )
         )
+
+    fun getMoviesResFromJson(): List<MovieRes> {
+        val jsonString = getJsonString("movies_response.json")
+        val dataInMap: Map<String, Any> = jsonString.convertStringToMap()
+        val moviesResDTO = dataInMap.toDataClass<MoviesResDTO>()
+        val gson = Gson()
+        val mapper: RetrofitResMapper<MoviesResDTO, List<MovieRes>> = RetrofitMoviesResMapper(gson)
+
+        return mapper.map(moviesResDTO)
+    }
+
+    fun getGenresResFromJson(): List<GenreRes> {
+        val jsonString = getJsonString("genres_response.json")
+        val dataInMap: Map<String, Any> = jsonString.convertStringToMap()
+        val genresResDTO = dataInMap.toDataClass<GenresResDTO>()
+        val gson = Gson()
+        val mapper: RetrofitResMapper<GenresResDTO, List<GenreRes>> = RetrofitGenresResMapper(gson)
+
+        return mapper.map(genresResDTO)
+    }
+
+    private fun getJsonString(filePath: String): String {
+        val inputStream =
+            javaClass.classLoader?.getResourceAsStream(filePath)
+
+        val writer = StringWriter()
+        val buffer = CharArray(1024)
+        inputStream.use { stream ->
+            val reader = BufferedReader(InputStreamReader(stream, "UTF-8"))
+            var n: Int
+            while (reader.read(buffer).also { n = it } != -1) {
+                writer.write(buffer, 0, n)
+            }
+        }
+
+        return writer.toString()
+    }
 }
