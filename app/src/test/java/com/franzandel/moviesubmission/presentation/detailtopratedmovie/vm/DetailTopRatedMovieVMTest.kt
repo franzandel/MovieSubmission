@@ -1,4 +1,4 @@
-package com.franzandel.moviesubmission.presentation.popularmovies.vm
+package com.franzandel.moviesubmission.presentation.detailtopratedmovie.vm
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
@@ -7,7 +7,7 @@ import com.franzandel.moviesubmission.core.external.coroutine.CoroutineThread
 import com.franzandel.moviesubmission.core.mapper.BaseMapper
 import com.franzandel.moviesubmission.domain.model.FavouriteMovieReq
 import com.franzandel.moviesubmission.domain.usecase.MoviesUseCase
-import com.franzandel.moviesubmission.presentation.popularmovies.model.PopularMovieResUI
+import com.franzandel.moviesubmission.presentation.topratedmovies.model.TopRatedMovieResUI
 import com.franzandel.moviesubmission.utils.RoomUtils
 import io.mockk.coEvery
 import io.mockk.mockk
@@ -27,38 +27,38 @@ import org.junit.Test
  */
 
 @ExperimentalCoroutinesApi
-class PopularMoviesVMTest {
+class DetailTopRatedMovieVMTest {
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
     private val useCase: MoviesUseCase = mockk(relaxed = true)
     private val coroutineThread: CoroutineThread = mockk(relaxed = true)
-    private val mapper: BaseMapper<PopularMovieResUI, FavouriteMovieReq> = mockk(relaxed = true)
+    private val mapper: BaseMapper<TopRatedMovieResUI, FavouriteMovieReq> = mockk(relaxed = true)
     private val successObserver: Observer<Unit> = mockk(relaxed = true)
     private val failedObserver: Observer<String> = mockk(relaxed = true)
 
-    private lateinit var viewModel: PopularMoviesVM
+    private lateinit var viewModel: DetailTopRatedMovieVM
 
     @Before
     fun setUp() {
-        viewModel = PopularMoviesVM(useCase, coroutineThread, mapper)
+        viewModel = DetailTopRatedMovieVM(useCase, coroutineThread, mapper)
     }
 
     @Test
-    fun `insert popular movies success`() {
+    fun `insert top rated movies success`() {
         runBlockingTest {
-            val popularMovieResUI = RoomUtils.getPopularMovieResUI()
+            val topRatedMovieResUI = RoomUtils.getTopRatedMovieResUI()
             val fakeSuccessResponse = Unit
 
-            coEvery { mapper.map(popularMovieResUI) } returns RoomUtils.getFavouriteMovieReq()
-            val favouriteMovieReq = mapper.map(popularMovieResUI)
+            coEvery { mapper.map(topRatedMovieResUI) } returns RoomUtils.getFavouriteMovieReq()
+            val favouriteMovieReq = mapper.map(topRatedMovieResUI)
 
             coEvery { useCase.insertFavouriteMovie(favouriteMovieReq) } returns Result.Success(Unit)
             coEvery { coroutineThread.background() } returns Dispatchers.Unconfined
 
             viewModel.insertFavouriteMovie.observeForever(successObserver)
-            viewModel.insertFavouriteMovie(popularMovieResUI)
+            viewModel.insertFavouriteMovie(topRatedMovieResUI)
 
             verify {
                 val insertFavouriteMovie = viewModel.insertFavouriteMovie.value
@@ -70,13 +70,13 @@ class PopularMoviesVMTest {
     }
 
     @Test
-    fun `insert popular movies failed`() {
+    fun `insert top rated movies failed`() {
         runBlockingTest {
-            val popularMovieResUI = RoomUtils.getPopularMovieResUI()
+            val topRatedMovieResUI = RoomUtils.getTopRatedMovieResUI()
             val fakeFailedResponse = RoomUtils.ERROR_INSERT_TO_DB
 
-            coEvery { mapper.map(popularMovieResUI) } returns RoomUtils.getFavouriteMovieReq()
-            val favouriteMovieReq = mapper.map(popularMovieResUI)
+            coEvery { mapper.map(topRatedMovieResUI) } returns RoomUtils.getFavouriteMovieReq()
+            val favouriteMovieReq = mapper.map(topRatedMovieResUI)
 
             coEvery {
                 useCase.insertFavouriteMovie(favouriteMovieReq)
@@ -84,7 +84,7 @@ class PopularMoviesVMTest {
             coEvery { coroutineThread.background() } returns Dispatchers.Unconfined
 
             viewModel.error.observeForever(failedObserver)
-            viewModel.insertFavouriteMovie(popularMovieResUI)
+            viewModel.insertFavouriteMovie(topRatedMovieResUI)
 
             verify {
                 val error = viewModel.error.value
@@ -96,19 +96,19 @@ class PopularMoviesVMTest {
     }
 
     @Test
-    fun `delete popular movies success`() {
+    fun `delete top rated movies success`() {
         runBlockingTest {
-            val popularMovieResUI = RoomUtils.getPopularMovieResUI()
+            val topRatedMovieResUI = RoomUtils.getTopRatedMovieResUI()
             val fakeSuccessResponse = Unit
 
-            coEvery { mapper.map(popularMovieResUI) } returns RoomUtils.getFavouriteMovieReq()
-            val favouriteMovieReq = mapper.map(popularMovieResUI)
+            coEvery { mapper.map(topRatedMovieResUI) } returns RoomUtils.getFavouriteMovieReq()
+            val favouriteMovieReq = mapper.map(topRatedMovieResUI)
 
             coEvery { useCase.deleteFavouriteMovie(favouriteMovieReq) } returns Result.Success(Unit)
             coEvery { coroutineThread.background() } returns Dispatchers.Unconfined
 
             viewModel.deleteFavouriteMovie.observeForever(successObserver)
-            viewModel.deleteFavouriteMovie(popularMovieResUI)
+            viewModel.deleteFavouriteMovie(topRatedMovieResUI)
 
             verify {
                 val deleteFavouriteMovie = viewModel.deleteFavouriteMovie.value
@@ -120,13 +120,13 @@ class PopularMoviesVMTest {
     }
 
     @Test
-    fun `delete popular movies failed`() {
+    fun `delete top rated movies failed`() {
         runBlockingTest {
-            val popularMovieResUI = RoomUtils.getPopularMovieResUI()
+            val topRatedMovieResUI = RoomUtils.getTopRatedMovieResUI()
             val fakeFailedResponse = RoomUtils.ERROR_DELETE_FROM_DB
 
-            coEvery { mapper.map(popularMovieResUI) } returns RoomUtils.getFavouriteMovieReq()
-            val favouriteMovieReq = mapper.map(popularMovieResUI)
+            coEvery { mapper.map(topRatedMovieResUI) } returns RoomUtils.getFavouriteMovieReq()
+            val favouriteMovieReq = mapper.map(topRatedMovieResUI)
 
             coEvery {
                 useCase.deleteFavouriteMovie(favouriteMovieReq)
@@ -134,7 +134,7 @@ class PopularMoviesVMTest {
             coEvery { coroutineThread.background() } returns Dispatchers.Unconfined
 
             viewModel.error.observeForever(failedObserver)
-            viewModel.deleteFavouriteMovie(popularMovieResUI)
+            viewModel.deleteFavouriteMovie(topRatedMovieResUI)
 
             verify {
                 val error = viewModel.error.value
