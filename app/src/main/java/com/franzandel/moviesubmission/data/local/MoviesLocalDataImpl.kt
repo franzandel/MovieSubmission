@@ -14,7 +14,6 @@ import javax.inject.Inject
 class MoviesLocalDataImpl @Inject constructor(
     private val dao: FavouriteMoviesDao,
     private val requestMapper: BaseMapper<FavouriteMovieReq, FavouriteMovieEntity>,
-    private val responseMapper: BaseMapper<FavouriteMovieEntity, FavouriteMovieRes>,
     private val responsesMapper: BaseMapper<List<FavouriteMovieEntity>, List<FavouriteMovieRes>>
 ) : MoviesLocalData {
 
@@ -30,15 +29,6 @@ class MoviesLocalDataImpl @Inject constructor(
             val favouriteMovieEntity = requestMapper.map(favouriteMovieReq)
             val result = dao.deleteFavouriteMovie(favouriteMovieEntity)
             mapLocalResponse(result, Unit, DatabaseConst.ERROR_DELETE_FROM_DB)
-        }
-
-    override suspend fun getFavouriteMovie(id: Int): Result<FavouriteMovieRes> =
-        suspendTryCatch {
-            val favouriteMovieEntity = dao.getFavouriteMovie(id)
-            if (favouriteMovieEntity == null)
-                Result.Error(Exception(DatabaseConst.NO_DATA_FOUND))
-            else
-                Result.Success(responseMapper.map(favouriteMovieEntity))
         }
 
     override suspend fun getFavouriteMovies(): Result<List<FavouriteMovieRes>> =

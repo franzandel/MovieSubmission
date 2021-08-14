@@ -94,9 +94,9 @@ class MoviesRepositoryImplTest {
                 localData.deleteFavouriteMovie(fakeFavouriteMovieReq)
             } returns Result.Error(Exception(fakeFailedResponse))
 
-            val deleteGamesResults = repository.deleteFavouriteMovie(fakeFavouriteMovieReq)
-            val result = deleteGamesResults as Result.Error
-            assertNotNull(deleteGamesResults)
+            val deleteFavouriteMovieResults = repository.deleteFavouriteMovie(fakeFavouriteMovieReq)
+            val result = deleteFavouriteMovieResults as Result.Error
+            assertNotNull(deleteFavouriteMovieResults)
             assertEquals(fakeFailedResponse, result.error.message)
         }
     }
@@ -104,14 +104,14 @@ class MoviesRepositoryImplTest {
     @Test
     fun `get favourite movies found`() {
         runBlockingTest {
-            val fakeGamesResult = RoomUtils.getFavouriteMoviesRes()
+            val fakeFavouriteMovieRes = RoomUtils.getFavouriteMoviesRes()
 
-            coEvery { localData.getFavouriteMovies() } returns Result.Success(fakeGamesResult)
+            coEvery { localData.getFavouriteMovies() } returns Result.Success(fakeFavouriteMovieRes)
 
             val favouriteMoviesResults = repository.getFavouriteMovies()
             val result = favouriteMoviesResults as Result.Success
             assertNotNull(favouriteMoviesResults)
-            assertEquals(fakeGamesResult.size, result.data.size)
+            assertEquals(fakeFavouriteMovieRes.size, result.data.size)
         }
     }
 

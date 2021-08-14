@@ -19,7 +19,4 @@ interface FavouriteMoviesDao {
 
     @Query("SELECT * FROM tbl_favourite_movie")
     suspend fun getFavouriteMovies(): List<FavouriteMovieEntity>
-
-    @Query("SELECT * FROM tbl_favourite_movie WHERE id = :id")
-    suspend fun getFavouriteMovie(id: Int): FavouriteMovieEntity?
 }
