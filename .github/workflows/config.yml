@@ -2,34 +2,22 @@
 
 name: CI
 
-# Controls when the workflow will run
-on:
-  # Triggers the workflow on push or pull request events but only for the master branch
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+on: push
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  setup_java:
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       - name: set up JDK 11
         uses: actions/setup-java@v2
         with:
           java-version: '11'
           distribution: 'adopt'
-
+  setup_fake_local_properties:
+    runs-on: ubuntu-latest
+    needs: setup_java
+    steps:
       - name: Create fake local properties
         run: touch local.properties
       - name: Access MOVIE_DB_API_KEY
@@ -52,7 +40,10 @@ jobs:
         env:
           CERT_PINNER_4_ENV_VAR: ${{ secrets.CERT_PINNER_4_ENV_VAR }}
         run: echo cert_pinner_4=$CERT_PINNER_4_ENV_VAR >> ./local.properties
-
+  install_fastlane:
+    runs-on: ubuntu-latest
+    needs: setup_java
+    steps:
       - name: Update Dependencies
         run: sudo apt-get update
       - name: Upgrade Dependencies
@@ -81,14 +72,21 @@ jobs:
         run: bundle exec fastlane env
       - name: Install Fastlane Firebase App Distribution
         run: bundle exec fastlane add_plugin firebase_app_distribution
-
+  build_debug_apk_gradle:
+    runs-on: ubuntu-latest
+    needs: [ setup_java, setup_fake_local_properties ]
+    steps:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Clean
         run: ./gradlew clean
       - name: Build APK with Gradle
         run: ./gradlew assembleDebug
-
+  deploy_to_firebase_app_distribution:
+    runs-on: ubuntu-latest
+    needs: build_debug_apk_gradle
+    if: github.ref == 'refs/heads/master'
+    steps:
       - name: Decode Google Cloud credentials
         env:
           GCLOUD_SERVICE_KEY_ENV_VAR: ${{ secrets.GCLOUD_SERVICE_KEY_ENV_VAR }}
