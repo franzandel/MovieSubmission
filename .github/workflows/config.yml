@@ -131,3 +131,5 @@ jobs:
         run: echo $GCLOUD_SERVICE_KEY_ENV_VAR | base64 -di > ./client-secret.json
       - name: Deploy APK to Firebase App Distribution
         run: bundle exec fastlane deployToFirebaseAppDistribution
+        env:
+          FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID_ENV_VAR }}
