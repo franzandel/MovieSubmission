@@ -31,9 +31,9 @@ jobs:
           distribution: 'adopt'
 
       - name: Access MOVIE_DB_API_KEY
-          env:
-            MOVIE_DB_API_KEY_ENV_VAR: ${{ secrets.MOVIE_DB_API_KEY_ENV_VAR }}
-          run: echo movie_db_api_key=$MOVIE_DB_API_KEY_ENV_VAR > ./local.properties
+        env:
+          MOVIE_DB_API_KEY_ENV_VAR: ${{ secrets.MOVIE_DB_API_KEY_ENV_VAR }}
+        run: echo movie_db_api_key=$MOVIE_DB_API_KEY_ENV_VAR > ./local.properties
       - name: Access CERT_PINNER_1
         env:
           CERT_PINNER_1_ENV_VAR: ${{ secrets.CERT_PINNER_1_ENV_VAR }}
