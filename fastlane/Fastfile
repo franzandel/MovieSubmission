@@ -1,0 +1,14 @@
+default_platform(:android)
+
+platform :android do
+    desc "Deploy APK to Firebase App Distribution"
+    lane :deployToFirebaseAppDistribution do
+        firebase_app_distribution(
+            app: "1:737365390317:android:7f6d66aaa886b735caade4",
+            service_credentials_file: "./client-secret.json",
+            android_artifact_path: "app/build/outputs/apk/debug/app-debug.apk",
+            testers: "guinglaincolz96@gmail.com, franz_andel@yahoo.com, franz.andel@amarbank.co.id",
+            release_notes: "New feature is out"
+        )
+    end
+end
