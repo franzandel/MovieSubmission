@@ -25,46 +25,46 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
-  setup_fake_local_properties:
-    runs-on: ubuntu-latest
-    needs: setup_java
-    steps:
-      - uses: actions/checkout@v2
-      - name: Cache Gradle packages
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
-      - name: Create fake local properties
-        run: touch local.properties
-      - name: Access MOVIE_DB_API_KEY
-        env:
-          MOVIE_DB_API_KEY_ENV_VAR: ${{ secrets.MOVIE_DB_API_KEY_ENV_VAR }}
-        run: echo movie_db_api_key=$MOVIE_DB_API_KEY_ENV_VAR >> ./local.properties
-      - name: Access CERT_PINNER_1
-        env:
-          CERT_PINNER_1_ENV_VAR: ${{ secrets.CERT_PINNER_1_ENV_VAR }}
-        run: echo cert_pinner_1=$CERT_PINNER_1_ENV_VAR >> ./local.properties
-      - name: Access CERT_PINNER_2
-        env:
-          CERT_PINNER_2_ENV_VAR: ${{ secrets.CERT_PINNER_2_ENV_VAR }}
-        run: echo cert_pinner_2=$CERT_PINNER_2_ENV_VAR >> ./local.properties
-      - name: Access CERT_PINNER_3
-        env:
-          CERT_PINNER_3_ENV_VAR: ${{ secrets.CERT_PINNER_3_ENV_VAR }}
-        run: echo cert_pinner_3=$CERT_PINNER_3_ENV_VAR >> ./local.properties
-      - name: Access CERT_PINNER_4
-        env:
-          CERT_PINNER_4_ENV_VAR: ${{ secrets.CERT_PINNER_4_ENV_VAR }}
-        run: echo cert_pinner_4=$CERT_PINNER_4_ENV_VAR >> ./local.properties
+  #  setup_fake_local_properties:
+  #    runs-on: ubuntu-latest
+  #    needs: setup_java
+  #    steps:
+  #      - uses: actions/checkout@v2
+  #      - name: Cache Gradle packages
+  #        uses: actions/cache@v2
+  #        with:
+  #          path: |
+  #            ~/.gradle/caches
+  #            ~/.gradle/wrapper
+  #          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+  #          restore-keys: |
+  #            ${{ runner.os }}-gradle-
+  #      - name: Create fake local properties
+  #        run: touch local.properties
+  #      - name: Access MOVIE_DB_API_KEY
+  #        env:
+  #          MOVIE_DB_API_KEY_ENV_VAR: ${{ secrets.MOVIE_DB_API_KEY_ENV_VAR }}
+  #        run: echo movie_db_api_key=$MOVIE_DB_API_KEY_ENV_VAR >> ./local.properties
+  #      - name: Access CERT_PINNER_1
+  #        env:
+  #          CERT_PINNER_1_ENV_VAR: ${{ secrets.CERT_PINNER_1_ENV_VAR }}
+  #        run: echo cert_pinner_1=$CERT_PINNER_1_ENV_VAR >> ./local.properties
+  #      - name: Access CERT_PINNER_2
+  #        env:
+  #          CERT_PINNER_2_ENV_VAR: ${{ secrets.CERT_PINNER_2_ENV_VAR }}
+  #        run: echo cert_pinner_2=$CERT_PINNER_2_ENV_VAR >> ./local.properties
+  #      - name: Access CERT_PINNER_3
+  #        env:
+  #          CERT_PINNER_3_ENV_VAR: ${{ secrets.CERT_PINNER_3_ENV_VAR }}
+  #        run: echo cert_pinner_3=$CERT_PINNER_3_ENV_VAR >> ./local.properties
+  #      - name: Access CERT_PINNER_4
+  #        env:
+  #          CERT_PINNER_4_ENV_VAR: ${{ secrets.CERT_PINNER_4_ENV_VAR }}
+  #        run: echo cert_pinner_4=$CERT_PINNER_4_ENV_VAR >> ./local.properties
   install_fastlane:
     runs-on: ubuntu-latest
     needs: setup_java
-    if: github.ref == 'refs/heads/master'
+    #    if: github.ref == 'refs/heads/master'
     steps:
       - uses: actions/checkout@v2
       - name: Cache Gradle packages
@@ -118,6 +118,28 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
+      - name: Create fake local properties
+        run: touch local.properties
+      - name: Access MOVIE_DB_API_KEY
+        env:
+          MOVIE_DB_API_KEY_ENV_VAR: ${{ secrets.MOVIE_DB_API_KEY_ENV_VAR }}
+        run: echo movie_db_api_key=$MOVIE_DB_API_KEY_ENV_VAR >> ./local.properties
+      - name: Access CERT_PINNER_1
+        env:
+          CERT_PINNER_1_ENV_VAR: ${{ secrets.CERT_PINNER_1_ENV_VAR }}
+        run: echo cert_pinner_1=$CERT_PINNER_1_ENV_VAR >> ./local.properties
+      - name: Access CERT_PINNER_2
+        env:
+          CERT_PINNER_2_ENV_VAR: ${{ secrets.CERT_PINNER_2_ENV_VAR }}
+        run: echo cert_pinner_2=$CERT_PINNER_2_ENV_VAR >> ./local.properties
+      - name: Access CERT_PINNER_3
+        env:
+          CERT_PINNER_3_ENV_VAR: ${{ secrets.CERT_PINNER_3_ENV_VAR }}
+        run: echo cert_pinner_3=$CERT_PINNER_3_ENV_VAR >> ./local.properties
+      - name: Access CERT_PINNER_4
+        env:
+          CERT_PINNER_4_ENV_VAR: ${{ secrets.CERT_PINNER_4_ENV_VAR }}
+        run: echo cert_pinner_4=$CERT_PINNER_4_ENV_VAR >> ./local.properties
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Clean
@@ -125,7 +147,7 @@ jobs:
       - name: Build APK with Gradle
         run: ./gradlew assembleDebug
       - name: Cleanup Gradle Cache
-          # Remove some files from the Gradle cache, so they aren't cached by GitHub Actions.
+        # Remove some files from the Gradle cache, so they aren't cached by GitHub Actions.
         # Restoring these files from a GitHub Actions cache might cause problems for future builds.
         run: |
           rm -f ~/.gradle/caches/modules-2/modules-2.lock
@@ -133,7 +155,7 @@ jobs:
   deploy_to_firebase_app_distribution:
     runs-on: ubuntu-latest
     needs: [ install_fastlane, build_debug_apk_gradle ]
-    if: github.ref == 'refs/heads/master'
+    #    if: github.ref == 'refs/heads/master'
     steps:
       - uses: actions/checkout@v2
       - name: Cache Gradle packages
