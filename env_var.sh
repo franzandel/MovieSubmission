@@ -10,10 +10,11 @@ function copyEnvVarsToLocalProperties {
         touch $FAKE_LOCAL_PROPERTIES
 
         echo "Writing API KEY to Fake local.properties..."
-        echo "movie_db_api_key=$MOVIE_DB_API_KEY_ENV_VAR" >> $FAKE_LOCAL_PROPERTIES
-        echo "cert_pinner_1=$CERT_PINNER_1_ENV_VAR" >> $FAKE_LOCAL_PROPERTIES
-        echo "cert_pinner_2=$CERT_PINNER_2_ENV_VAR" >> $FAKE_LOCAL_PROPERTIES
-        echo "cert_pinner_3=$CERT_PINNER_3_ENV_VAR" >> $FAKE_LOCAL_PROPERTIES
+        echo "movie_db_api_key=${ secrets.MOVIE_DB_API_KEY_ENV_VAR }" >> $FAKE_LOCAL_PROPERTIES
+        echo "cert_pinner_1=${ secrets.CERT_PINNER_1_ENV_VAR }" >> $FAKE_LOCAL_PROPERTIES
+        echo "cert_pinner_2=${ secrets.CERT_PINNER_2_ENV_VAR }" >> $FAKE_LOCAL_PROPERTIES
+        echo "cert_pinner_3=${ secrets.CERT_PINNER_3_ENV_VAR }" >> $FAKE_LOCAL_PROPERTIES
+        echo "cert_pinner_4=${ secrets.CERT_PINNER_4_ENV_VAR }" >> $FAKE_LOCAL_PROPERTIES
 
         echo "Display Content Fake Local Properties"
         cat $FAKE_LOCAL_PROPERTIES
