@@ -70,7 +70,7 @@ jobs:
       - name: Install Bundle
         run: bundle install
       - name: install fastlane
-        run: sudo gem install fastlane --no-ri
+        run: sudo gem install fastlane
       - name: Update Bundle
         run: bundle update --bundler
       - name: Chmod permissions #if permission for Gradlew Dependencies fail, use this.
