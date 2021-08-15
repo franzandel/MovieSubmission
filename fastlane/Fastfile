@@ -7,7 +7,7 @@ platform :android do
             app: ENV['FIREBASE_APP_ID'],
             service_credentials_file: "./client-secret.json",
             android_artifact_path: "./app-debug.apk",
-            testers: "guinglaincolz96@gmail.com, franz_andel@yahoo.com, franz.andel@amarbank.co.id",
+            testers: "ihsan.helmi@ovo.id, bagus.yogatama@ovo.id, gabyola@ovo.id, franz_andel@yahoo.com",
             release_notes: "New feature is out"
         )
     end
