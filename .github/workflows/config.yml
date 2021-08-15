@@ -1,5 +1,3 @@
-# This is a basic workflow to help you get started with Actions
-
 name: CI
 
 on: push
@@ -25,87 +23,6 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
-
-  #  setup_fake_local_properties:
-  #    runs-on: ubuntu-latest
-  #    needs: setup_java_gradle
-  #    steps:
-  #      - uses: actions/checkout@v2
-  #      - name: Cache Gradle packages
-  #        uses: actions/cache@v2
-  #        with:
-  #          path: |
-  #            ~/.gradle/caches
-  #            ~/.gradle/wrapper
-  #          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-  #          restore-keys: |
-  #            ${{ runner.os }}-gradle-
-  #      - name: Create fake local properties
-  #        run: touch local.properties
-  #      - name: Access MOVIE_DB_API_KEY
-  #        env:
-  #          MOVIE_DB_API_KEY_ENV_VAR: ${{ secrets.MOVIE_DB_API_KEY_ENV_VAR }}
-  #        run: echo movie_db_api_key=$MOVIE_DB_API_KEY_ENV_VAR >> ./local.properties
-  #      - name: Access CERT_PINNER_1
-  #        env:
-  #          CERT_PINNER_1_ENV_VAR: ${{ secrets.CERT_PINNER_1_ENV_VAR }}
-  #        run: echo cert_pinner_1=$CERT_PINNER_1_ENV_VAR >> ./local.properties
-  #      - name: Access CERT_PINNER_2
-  #        env:
-  #          CERT_PINNER_2_ENV_VAR: ${{ secrets.CERT_PINNER_2_ENV_VAR }}
-  #        run: echo cert_pinner_2=$CERT_PINNER_2_ENV_VAR >> ./local.properties
-  #      - name: Access CERT_PINNER_3
-  #        env:
-  #          CERT_PINNER_3_ENV_VAR: ${{ secrets.CERT_PINNER_3_ENV_VAR }}
-  #        run: echo cert_pinner_3=$CERT_PINNER_3_ENV_VAR >> ./local.properties
-  #      - name: Access CERT_PINNER_4
-  #        env:
-  #          CERT_PINNER_4_ENV_VAR: ${{ secrets.CERT_PINNER_4_ENV_VAR }}
-  #        run: echo cert_pinner_4=$CERT_PINNER_4_ENV_VAR >> ./local.properties
-
-  #  install_fastlane:
-  #    runs-on: ubuntu-latest
-  #    needs: setup_java_gradle
-  #    #    if: github.ref == 'refs/heads/master'
-  #    steps:
-  #      - uses: actions/checkout@v2
-  #      - name: Cache Gradle packages
-  #        uses: actions/cache@v2
-  #        with:
-  #          path: |
-  #            ~/.gradle/caches
-  #            ~/.gradle/wrapper
-  #          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-  #          restore-keys: |
-  #            ${{ runner.os }}-gradle-
-  #      - name: Update Dependencies
-  #        run: sudo apt-get update
-  #      - name: Upgrade Dependencies
-  #        run: sudo apt-get upgrade
-  #      - name: Download Ruby
-  #        run: sudo apt-get install ruby-full build-essential
-  #      - name: Install Rake
-  #        run: sudo gem install rake
-  #      - name: Install Digest CRC
-  #        run: sudo gem install digest-crc
-  #      - name: Install Bundler 2.0.2
-  #        run: sudo gem install bundler && bundle update
-  #      - name: Set Ruby Version
-  #        run: echo "ruby-2.4" > ~/.ruby-version # Replace 2.4 with the specific version of Ruby here.
-  #      - name: Download Ruby Dependencies
-  #        run: bundle check || bundle install --path vendor/bundle
-  #      - name: Install Bundle
-  #        run: bundle install
-  #      - name: install fastlane
-  #        run: sudo gem install fastlane
-  #      - name: Update Bundle
-  #        run: bundle update --bundler
-  #      - name: Chmod permissions #if permission for Gradlew Dependencies fail, use this.
-  #        run: sudo chmod +x ./gradlew
-  #      - name: Log Fastlane
-  #        run: bundle exec fastlane env
-  #      - name: Install Fastlane Firebase App Distribution
-  #        run: bundle exec fastlane add_plugin firebase_app_distribution
 
   build_debug_apk_gradle:
     runs-on: ubuntu-latest
@@ -149,6 +66,11 @@ jobs:
         run: ./gradlew clean
       - name: Build APK with Gradle
         run: ./gradlew assembleDebug
+      - name: Upload Debug APK as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: debug-apk
+          path: app/build/outputs/apk/debug/app-debug.apk
       - name: Cleanup Gradle Cache
         # Remove some files from the Gradle cache, so they aren't cached by GitHub Actions.
         # Restoring these files from a GitHub Actions cache might cause problems for future builds.
@@ -171,6 +93,10 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
+      - name: Download Debug APK from artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: debug-apk
       - name: Update Dependencies
         run: sudo apt-get update
       - name: Upgrade Dependencies
