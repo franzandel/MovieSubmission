@@ -51,14 +51,6 @@ jobs:
           CERT_PINNER_4_ENV_VAR: ${{ secrets.CERT_PINNER_4_ENV_VAR }}
         run: echo cert_pinner_4=$CERT_PINNER_4_ENV_VAR > ./local.properties
 
-      - name: Read local.properties
-        id: package
-        uses: juliangruber/read-file-action@v1
-        with:
-          path: ./local.properties
-      - name: Echo local.properties
-        run: echo "${{ steps.package.outputs.content }}"
-
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Clean
