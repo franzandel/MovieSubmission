@@ -80,6 +80,13 @@ jobs:
       - name: Install Fastlane Firebase App Distribution
         run: bundle exec fastlane add_plugin firebase_app_distribution
 
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+      - name: Clean
+        run: ./gradlew clean
+      - name: Build APK with Gradle
+        run: ./gradlew assembleDebug
+
       - name: Decode Google Cloud credentials
         env:
           GCLOUD_SERVICE_KEY_ENV_VAR: ${{ secrets.GCLOUD_SERVICE_KEY_ENV_VAR }}
