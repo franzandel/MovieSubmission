@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "737365390317",
+    "project_id": "moviesubmission",
+    "storage_bucket": "moviesubmission.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:737365390317:android:7f6d66aaa886b735caade4",
+        "android_client_info": {
+          "package_name": "com.franzandel.moviesubmission"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "737365390317-866dkpoml6pblpm9r230uqmpbfl94gt1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBngCWjLW13ZgZGsWZQCGuyh9d_QArQ0MY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "737365390317-866dkpoml6pblpm9r230uqmpbfl94gt1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

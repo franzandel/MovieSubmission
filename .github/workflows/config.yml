@@ -51,9 +51,45 @@ jobs:
           CERT_PINNER_4_ENV_VAR: ${{ secrets.CERT_PINNER_4_ENV_VAR }}
         run: echo cert_pinner_4=$CERT_PINNER_4_ENV_VAR > ./local.properties
 
+      - name: Update Dependencies
+        run: sudo apt-get update
+      - name: Upgrade Dependencies
+        run: sudo apt-get upgrade
+      - name: Download Ruby
+        run: sudo apt-get install ruby-full build-essential
+      - name: Install Rake
+        run: sudo gem install rake
+      - name: Install Digest CRC
+        run: sudo gem install digest-crc
+      - name: Install Bundler 2.0.2
+        run: sudo gem install bundler && bundle update
+      - name: Set Ruby Version
+        run: echo "ruby-2.4" > ~/.ruby-version # Replace 2.4 with the specific version of Ruby here.
+      - name: Download Ruby Dependencies
+        run: bundle check || bundle install --path vendor/bundle
+      - name: Install Bundle
+        run: bundle install
+      - name: install fastlane
+        run: sudo gem install fastlane --no-rdoc --no-ri
+      - name: Update Bundle
+        run: bundle update --bundler
+      - name: Chmod permissions #if permission for Gradlew Dependencies fail, use this.
+        run: sudo chmod +x ./gradlew
+      - name: Log Fastlane
+        run: bundle exec fastlane env
+      - name: Install Fastlane Firebase App Distribution
+        run: bundle exec fastlane add_plugin firebase_app_distribution
+
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Clean
         run: ./gradlew clean
       - name: Build with Gradle
         run: ./gradlew build
+
+      - name: Decode Google Cloud credentials
+        env:
+          GCLOUD_SERVICE_KEY_ENV_VAR: ${{ secrets.GCLOUD_SERVICE_KEY_ENV_VAR }}
+        run: echo $CERT_PINNER_4_ENV_VAR | base64 -di > ./client-secret.json
+      - name: Deploy APK to Firebase App Distribution
+        run: bundle exec fastlane deployToFirebaseAppDistribution
