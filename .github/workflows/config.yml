@@ -90,6 +90,6 @@ jobs:
       - name: Decode Google Cloud credentials
         env:
           GCLOUD_SERVICE_KEY_ENV_VAR: ${{ secrets.GCLOUD_SERVICE_KEY_ENV_VAR }}
-        run: echo $CERT_PINNER_4_ENV_VAR | base64 -di > ./client-secret.json
+        run: echo $GCLOUD_SERVICE_KEY_ENV_VAR | base64 -di > ./client-secret.json
       - name: Deploy APK to Firebase App Distribution
         run: bundle exec fastlane deployToFirebaseAppDistribution
