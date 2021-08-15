@@ -14,7 +14,6 @@ function copyEnvVarsToLocalProperties {
         echo "cert_pinner_1=$CERT_PINNER_1_ENV_VAR" >> $FAKE_LOCAL_PROPERTIES
         echo "cert_pinner_2=$CERT_PINNER_2_ENV_VAR" >> $FAKE_LOCAL_PROPERTIES
         echo "cert_pinner_3=$CERT_PINNER_3_ENV_VAR" >> $FAKE_LOCAL_PROPERTIES
-        echo "cert_pinner_4=$CERT_PINNER_4_ENV_VAR" >> $FAKE_LOCAL_PROPERTIES
 
         echo "Display Content Fake Local Properties"
         cat $FAKE_LOCAL_PROPERTIES
