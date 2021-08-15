@@ -30,26 +30,28 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
 
+      - name: Create fake local properties
+        run: touch local.properties
       - name: Access MOVIE_DB_API_KEY
         env:
           MOVIE_DB_API_KEY_ENV_VAR: ${{ secrets.MOVIE_DB_API_KEY_ENV_VAR }}
-        run: echo movie_db_api_key=$MOVIE_DB_API_KEY_ENV_VAR > ./local.properties
-      #      - name: Access CERT_PINNER_1
-      #        env:
-      #          CERT_PINNER_1_ENV_VAR: ${{ secrets.CERT_PINNER_1_ENV_VAR }}
-      #        run: echo cert_pinner_1=$CERT_PINNER_1_ENV_VAR > ./local.properties
-      #      - name: Access CERT_PINNER_2
-      #        env:
-      #          CERT_PINNER_2_ENV_VAR: ${{ secrets.CERT_PINNER_2_ENV_VAR }}
-      #        run: echo cert_pinner_2=$CERT_PINNER_2_ENV_VAR > ./local.properties
-      #      - name: Access CERT_PINNER_3
-      #        env:
-      #          CERT_PINNER_3_ENV_VAR: ${{ secrets.CERT_PINNER_3_ENV_VAR }}
-      #        run: echo cert_pinner_3=$CERT_PINNER_3_ENV_VAR > ./local.properties
-      #      - name: Access CERT_PINNER_4
-      #        env:
-      #          CERT_PINNER_4_ENV_VAR: ${{ secrets.CERT_PINNER_4_ENV_VAR }}
-      #        run: echo cert_pinner_4=$CERT_PINNER_4_ENV_VAR > ./local.properties
+        run: echo movie_db_api_key=$MOVIE_DB_API_KEY_ENV_VAR >> ./local.properties
+      - name: Access CERT_PINNER_1
+        env:
+          CERT_PINNER_1_ENV_VAR: ${{ secrets.CERT_PINNER_1_ENV_VAR }}
+        run: echo cert_pinner_1=$CERT_PINNER_1_ENV_VAR >> ./local.properties
+      - name: Access CERT_PINNER_2
+        env:
+          CERT_PINNER_2_ENV_VAR: ${{ secrets.CERT_PINNER_2_ENV_VAR }}
+        run: echo cert_pinner_2=$CERT_PINNER_2_ENV_VAR >> ./local.properties
+      - name: Access CERT_PINNER_3
+        env:
+          CERT_PINNER_3_ENV_VAR: ${{ secrets.CERT_PINNER_3_ENV_VAR }}
+        run: echo cert_pinner_3=$CERT_PINNER_3_ENV_VAR >> ./local.properties
+      - name: Access CERT_PINNER_4
+        env:
+          CERT_PINNER_4_ENV_VAR: ${{ secrets.CERT_PINNER_4_ENV_VAR }}
+        run: echo cert_pinner_4=$CERT_PINNER_4_ENV_VAR >> ./local.properties
 
       - name: Update Dependencies
         run: sudo apt-get update
