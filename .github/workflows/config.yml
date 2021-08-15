@@ -106,7 +106,7 @@ jobs:
         run: bundle exec fastlane add_plugin firebase_app_distribution
   build_debug_apk_gradle:
     runs-on: ubuntu-latest
-    needs: setup_fake_local_properties
+    needs: setup_java
     steps:
       - uses: actions/checkout@v2
       - name: Cache Gradle packages
