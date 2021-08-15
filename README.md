@@ -1,3 +1,4 @@
 # MovieSubmission
 
-![example branch parameter](https://github.com/github/docs/actions/workflows/main.yml/badge.svg?branch=master)
+![franzandel](https://github.com/franzandel/MovieSubmission/actions/workflows/config.yml/badge.svg)
+
