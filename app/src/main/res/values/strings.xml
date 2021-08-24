@@ -10,4 +10,9 @@
 
     <string name="share_message_title">Let\'s share this apps to your friends!</string>
     <string name="share_message_description">Know more info about %s at <b>Movi</b> in Google Play Store</string>
+
+    <string name="login_username_hint">Username</string>
+    <string name="login_password_hint">Password</string>
+    <string name="login_button">Login</string>
+    <string name="login_wrong_credentials">Username / Password salah</string>
 </resources>

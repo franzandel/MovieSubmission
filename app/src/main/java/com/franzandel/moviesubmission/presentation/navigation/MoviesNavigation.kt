@@ -13,4 +13,5 @@ interface MoviesNavigation {
     fun goToDetailPopularMovie(popularMovieResUI: PopularMovieResUI)
     fun goToDetailTopRatedMovie(topRatedMovieResUI: TopRatedMovieResUI)
     fun goToDetailFavouriteMovie(favouriteMovieResUI: FavouriteMovieResUI)
+    fun goToDashboard()
 }

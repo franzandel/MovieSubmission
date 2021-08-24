@@ -33,6 +33,7 @@ android {
         }
 
         all {
+            buildConfigField 'String', "LOGIN_BASE_URL" , '"https://my-json-server.typicode.com/"'
             buildConfigField 'String', "MOVIE_DB_BASE_URL" , '"https://api.themoviedb.org/3/"'
             buildConfigField 'String', "MOVIE_DB_IMAGE_BASE_URL" , '"https://image.tmdb.org/t/p/w185"'
             buildConfigField 'String', "MOVIE_DB_API_KEY" , "\"$movieDBAPIKey\""
