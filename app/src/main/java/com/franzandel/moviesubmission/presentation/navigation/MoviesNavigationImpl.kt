@@ -3,6 +3,7 @@ package com.franzandel.moviesubmission.presentation.navigation
 import android.content.Context
 import com.franzandel.moviesubmission.core.external.extension.goTo
 import com.franzandel.moviesubmission.data.consts.BundleConst
+import com.franzandel.moviesubmission.presentation.dashboard.activity.DashboardActivity
 import com.franzandel.moviesubmission.presentation.detailfavouritemovie.activity.DetailFavouriteMovieActivity
 import com.franzandel.moviesubmission.presentation.detailpopularmovie.activity.DetailPopularMovieActivity
 import com.franzandel.moviesubmission.presentation.detailtopratedmovie.activity.DetailTopRatedMovieActivity
@@ -31,5 +32,9 @@ class MoviesNavigationImpl @Inject constructor(@ActivityContext private val cont
         context.goTo(DetailFavouriteMovieActivity::class.java) {
             putExtra(BundleConst.EXTRA_FAVOURITE_MOVIE_RES_UI, favouriteMovieResUI)
         }
+    }
+
+    override fun goToDashboard() {
+        context.goTo(DashboardActivity::class.java)
     }
 }

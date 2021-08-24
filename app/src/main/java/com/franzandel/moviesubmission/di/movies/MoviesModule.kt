@@ -27,6 +27,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.android.scopes.ViewModelScoped
 import retrofit2.Retrofit
+import javax.inject.Named
 
 /**
  * Created by Franz Andel on 11/08/21.
@@ -39,7 +40,7 @@ object MoviesModule {
 
     @Provides
     @ViewModelScoped
-    fun provideMoviesNetworkService(retrofit: Retrofit): MoviesNetworkService =
+    fun provideMoviesNetworkService(@Named("Movie_API") retrofit: Retrofit): MoviesNetworkService =
         retrofit.create(MoviesNetworkService::class.java)
 
     @Provides
