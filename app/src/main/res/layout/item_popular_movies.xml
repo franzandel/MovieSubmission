@@ -1,61 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="@dimen/margin_8"
-    app:cardCornerRadius="@dimen/margin_8"
-    app:cardElevation="@dimen/margin_8">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <data>
+
+        <variable
+            name="movieDBImageBaseUrl"
+            type="String" />
+
+        <variable
+            name="itemPosition"
+            type="Integer" />
+
+        <variable
+            name="popularMovieResUI"
+            type="com.franzandel.moviesubmission.presentation.popularmovies.model.PopularMovieResUI" />
+
+        <variable
+            name="navigation"
+            type="com.franzandel.moviesubmission.presentation.navigation.MoviesNavigation" />
+
+        <variable
+            name="viewModel"
+            type="com.franzandel.moviesubmission.presentation.popularmovies.vm.PopularMoviesVM" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_8"
+        android:onClick="@{() -> navigation.goToDetailPopularMovie(popularMovieResUI)}"
+        app:cardCornerRadius="@dimen/margin_8"
+        app:cardElevation="@dimen/margin_8">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/iv_popular_movies"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_launcher_background"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_title"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/margin_8"
-            android:layout_marginTop="@dimen/margin_16"
-            android:ellipsize="end"
-            android:maxLines="@integer/max_line_1"
-            android:textSize="@dimen/text_size_16"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/iv_favourite"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_popular_movies"
-            tools:text="Tomorrowland" />
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_popular_movies"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:imageUrl="@{movieDBImageBaseUrl + popularMovieResUI.posterPath}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:placeholder="@{@drawable/ic_image_not_found}"
+                tools:src="@drawable/ic_launcher_background" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_genre"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/margin_8"
-            android:layout_marginTop="@dimen/margin_16"
-            android:ellipsize="end"
-            android:maxLines="@integer/max_line_1"
-            android:paddingBottom="@dimen/margin_8"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_title"
-            tools:text="Action, Adventure, Fantasy, Mystery" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_8"
+                android:layout_marginTop="@dimen/margin_16"
+                android:ellipsize="end"
+                android:maxLines="@integer/max_line_1"
+                android:text="@{popularMovieResUI.title}"
+                android:textSize="@dimen/text_size_16"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/iv_favourite"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iv_popular_movies"
+                tools:text="Tomorrowland" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/iv_favourite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_16"
-            android:layout_marginEnd="@dimen/margin_8"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_popular_movies"
-            app:srcCompat="@drawable/favourite_selector" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</com.google.android.material.card.MaterialCardView>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_genre"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_8"
+                android:layout_marginTop="@dimen/margin_16"
+                android:ellipsize="end"
+                android:maxLines="@integer/max_line_1"
+                android:paddingBottom="@dimen/margin_8"
+                android:text="@{popularMovieResUI.genres}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_title"
+                tools:text="Action, Adventure, Fantasy, Mystery" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_favourite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_16"
+                android:layout_marginEnd="@dimen/margin_8"
+                android:onClick="@{() -> popularMovieResUI.isFavourite ? viewModel.deleteFavouriteMovie(popularMovieResUI, itemPosition) : viewModel.insertFavouriteMovie(popularMovieResUI, itemPosition)}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iv_popular_movies"
+                app:selected="@{popularMovieResUI.isFavourite}"
+                app:srcCompat="@drawable/favourite_selector" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>
