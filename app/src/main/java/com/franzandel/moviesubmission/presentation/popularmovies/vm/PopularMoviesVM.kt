@@ -21,27 +21,37 @@ class PopularMoviesVM @Inject constructor(
     private val mapper: BaseMapper<PopularMovieResUI, FavouriteMovieReq>
 ) : BaseViewModel() {
 
-    private val _insertFavouriteMovie = MutableLiveData<Unit>()
-    val insertFavouriteMovie: LiveData<Unit> = _insertFavouriteMovie
+    private val _insertFavouriteMovie = MutableLiveData<Pair<PopularMovieResUI, Int>>()
+    val insertFavouriteMovie: LiveData<Pair<PopularMovieResUI, Int>> = _insertFavouriteMovie
 
-    fun insertFavouriteMovie(popularMovieResUI: PopularMovieResUI) {
+    fun insertFavouriteMovie(popularMovieResUI: PopularMovieResUI, itemPosition: Int) {
         viewModelScope.launch(coroutineThread.background()) {
             val favouriteMovieReq = mapper.map(popularMovieResUI)
             when (val result = moviesUseCase.insertFavouriteMovie(favouriteMovieReq)) {
-                is Result.Success -> _insertFavouriteMovie.postValue(result.data)
+                is Result.Success -> _insertFavouriteMovie.postValue(
+                    Pair(
+                        popularMovieResUI,
+                        itemPosition
+                    )
+                )
                 is Result.Error -> _error.postValue(result.error.localizedMessage)
             }
         }
     }
 
-    private val _deleteFavouriteMovie = MutableLiveData<Unit>()
-    val deleteFavouriteMovie: LiveData<Unit> = _deleteFavouriteMovie
+    private val _deleteFavouriteMovie = MutableLiveData<Pair<PopularMovieResUI, Int>>()
+    val deleteFavouriteMovie: LiveData<Pair<PopularMovieResUI, Int>> = _deleteFavouriteMovie
 
-    fun deleteFavouriteMovie(popularMovieResUI: PopularMovieResUI) {
+    fun deleteFavouriteMovie(popularMovieResUI: PopularMovieResUI, itemPosition: Int) {
         viewModelScope.launch(coroutineThread.background()) {
             val favouriteMovieReq = mapper.map(popularMovieResUI)
             when (val result = moviesUseCase.deleteFavouriteMovie(favouriteMovieReq)) {
-                is Result.Success -> _deleteFavouriteMovie.postValue(result.data)
+                is Result.Success -> _deleteFavouriteMovie.postValue(
+                    Pair(
+                        popularMovieResUI,
+                        itemPosition
+                    )
+                )
                 is Result.Error -> _error.postValue(result.error.localizedMessage)
             }
         }
