@@ -6,7 +6,7 @@
     <data>
 
         <variable
-            name="movieDBImageBaseUrl"
+            name="imageUrl"
             type="String" />
 
         <variable
@@ -42,7 +42,7 @@
                 android:id="@+id/iv_popular_movies"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:imageUrl="@{movieDBImageBaseUrl + popularMovieResUI.posterPath}"
+                app:imageUrl="@{imageUrl}"
                 app:layout_constraintTop_toTopOf="parent"
                 app:placeholder="@{@drawable/ic_image_not_found}"
                 tools:src="@drawable/ic_launcher_background" />
