@@ -21,7 +21,7 @@ class PopularMoviesVH(
     fun bind(popularMovieResUI: PopularMovieResUI) {
         with(itemPopularMoviesBinding) {
             itemPosition = adapterPosition
-            movieDBImageBaseUrl = BuildConfig.MOVIE_DB_IMAGE_BASE_URL
+            imageUrl = BuildConfig.MOVIE_DB_IMAGE_BASE_URL + popularMovieResUI.posterPath
             this.popularMovieResUI = popularMovieResUI
             this.navigation = this@PopularMoviesVH.navigation
             viewModel = popularMoviesVM

@@ -16,7 +16,7 @@ class RetrofitMoviesResMapper(gson: Gson) : RetrofitResMapper<MoviesResDTO, List
         dataModel.movies.map {
             MovieRes(
                 adult = it.adult,
-                backdropPath = it.backdropPath,
+                backdropPath = it.backdropPath ?: "",
                 genreIds = it.genreIds,
                 id = it.id,
                 originalLanguage = it.originalLanguage,
